@@ -17,7 +17,7 @@ Doublex Expects
 Usage
 -----
 
-Just import the ``expect`` callable and start writing test assertions for test doubles.
+Just import the ``expect`` callable and start writing assertions for test doubles.
 
 .. code-block:: python
 
