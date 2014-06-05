@@ -19,20 +19,20 @@ Usage
 
 Just import the `expect` callable and start writing test assertions for test doubles.
 
-```python
-from expects import expect
-from doublex import Spy
+.. code-block:: python
 
-my_spy = Spy()
+    from expects import expect
+    from doublex import Spy
 
-expect(func=my_spy.method).to.have.been.called
+    my_spy = Spy()
 
-expect(func=my_spy.method).to.have.not_been.called
+    expect(func=my_spy.method).to.have.been.called
 
-expect(func=my_spy.method).to.have.been.called.once
+    expect(func=my_spy.method).to.have.not_been.called
 
-expect(func=my_spy.method).to.have.been.called.exactly(2)
-```
+    expect(func=my_spy.method).to.have.been.called.once
+
+    expect(func=my_spy.method).to.have.been.called.exactly(2)
 
 Installation
 ------------
