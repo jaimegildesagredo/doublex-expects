@@ -23,3 +23,19 @@ with describe('called'):
     with it('should fail if method not called'):
         with failure(self.method, 'to have been called'):
             expect(func=self.method).to.have.been.called
+
+    with context('once'):
+        with it('should pass if called once'):
+            self.method()
+
+            expect(func=self.method).to.have.been.called.once
+
+        with it('should fail if called more than once'):
+            self.method()
+            self.method()
+
+            with failure(
+                self.method,
+                'to have been called once but was called 2 times'):
+
+                expect(func=self.method).to.have.been.called.once
