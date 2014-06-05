@@ -24,7 +24,17 @@ with describe('called'):
         with failure(self.method, 'to have been called'):
             expect(func=self.method).to.have.been.called
 
-    with context('once'):
+    with context('#negated'):
+        with it('should pass if not called'):
+            expect(func=self.method).to.have.not_been.called
+
+        with it('should fail if called'):
+            self.method()
+
+            with failure(self.method, 'to have not been called'):
+                expect(func=self.method).to.have.not_been.called
+
+    with describe('once'):
         with it('should pass if called once'):
             self.method()
 
@@ -39,3 +49,16 @@ with describe('called'):
                 'to have been called once but was called 2 times'):
 
                 expect(func=self.method).to.have.been.called.once
+
+        with context('#negated'):
+            with it('should pass if called more than once'):
+                self.method()
+                self.method()
+
+                expect(func=self.method).to.have.been.called.not_once
+
+            with it('should fail if called once'):
+                self.method()
+
+                with failure(self.method, 'to have been called not once'):
+                    expect(func=self.method).to.have.been.called.not_once

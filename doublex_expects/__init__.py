@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
 
 import doublex
+from expects.expectation import Expectation
 
 
-class Spy(object):
-    def __init__(self, method, *_):
-        self._method = method
-
+class Spy(Expectation):
     @property
     def to(self):
         return self
@@ -21,23 +19,25 @@ class Spy(object):
 
     @property
     def called(self):
-        assert self._method._was_called(doublex.internal.InvocationContext(doublex.ANY_ARG), doublex.matchers.any_time), 'Expected {!r} to have been called'.format(self._method)
+        self._assert(self._was_called)
 
-        return _Called(self._method)
+        return self
 
-
-class _Called(object):
-    def __init__(self, method):
-        self._method = method
+    @property
+    def _was_called(self):
+        return self._actual._was_called(
+            doublex.internal.InvocationContext(doublex.ANY_ARG),
+            doublex.matchers.any_time)
 
     @property
     def once(self):
-        assert self._times == 1, 'Expected {!r} to have been called once but was called {} times'.format(self._method, self._times)
+        self._assert(self._times == 1,
+                     'but was called {} times'.format(self._times))
 
     @property
     def _times(self):
-        return self._method.double._recorded.count(
+        return self._actual.double._recorded.count(
             doublex.internal.Invocation(
-                self._method.double,
-                self._method.name,
+                self._actual.double,
+                self._actual.name,
                 doublex.internal.InvocationContext(doublex.ANY_ARG)))
