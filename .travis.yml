@@ -1,0 +1,18 @@
+language: python
+
+python:
+    - 2.7
+    - 3.3
+    - 3.4
+    - pypy
+
+install:
+ - python setup.py sdist
+ - mkdir tmp
+ - tar xvf dist/doublex-expects-*.tar.gz -C tmp
+ - python tmp/doublex-expects-*/setup.py install
+
+ - pip install -r test-requirements.txt
+
+script:
+ - mamba
