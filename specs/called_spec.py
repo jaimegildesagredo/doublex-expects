@@ -75,3 +75,16 @@ with describe('called'):
 
             with failure(self.method, 'to have been called exactly 2 times'):
                 expect(func=self.method).to.have.been.called.exactly(2)
+
+        with context('#negated'):
+            with it('should pass if called a different amount of times'):
+                self.method()
+
+                expect(func=self.method).to.have.been.called.not_exactly(2)
+
+            with it('should fail if called exactly x times'):
+                self.method()
+                self.method()
+
+                with failure(self.method, 'to have been called not exactly 2 times'):
+                    expect(func=self.method).to.have.been.called.not_exactly(2)
