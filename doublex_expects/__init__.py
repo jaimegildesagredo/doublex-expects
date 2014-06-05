@@ -34,6 +34,9 @@ class Spy(Expectation):
         self._assert(self._times == 1,
                      'but was called {} times'.format(self._times))
 
+    def exactly(self, times):
+        self._assert(self._times == times, '{} times'.format(times))
+
     @property
     def _times(self):
         return self._actual.double._recorded.count(

@@ -62,3 +62,16 @@ with describe('called'):
 
                 with failure(self.method, 'to have been called not once'):
                     expect(func=self.method).to.have.been.called.not_once
+
+    with describe('exactly'):
+        with it('should pass if called exactly x times'):
+            self.method()
+            self.method()
+
+            expect(func=self.method).to.have.been.called.exactly(2)
+
+        with it('should fail if called a different amount of times'):
+            self.method()
+
+            with failure(self.method, 'to have been called exactly 2 times'):
+                expect(func=self.method).to.have.been.called.exactly(2)
