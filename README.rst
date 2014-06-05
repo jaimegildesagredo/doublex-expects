@@ -12,7 +12,7 @@ Doublex Expects
 .. image:: https://secure.travis-ci.org/jaimegildesagredo/doublex-expects.png?branch=master
     :target: http://travis-ci.org/jaimegildesagredo/doublex-expects
 
-**Doublex-expects** is an `Expects <https://github.com/jaimegildesagredo/expects>`_ plugin for `Doublex <https://pypi.python.org/pypi/doublex>`_ testing doubles assertions.
+**Doublex-expects** is an `Expects <https://github.com/jaimegildesagredo/expects>`_ plugin for `Doublex <https://pypi.python.org/pypi/doublex>`_ test doubles assertions.
 
 Usage
 -----
