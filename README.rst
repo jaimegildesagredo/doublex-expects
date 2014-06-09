@@ -26,13 +26,13 @@ Just import the ``expect`` callable and start writing assertions for test double
 
     my_spy = Spy()
 
-    expect(func=my_spy.method).to.have.been.called
+    expect(my_spy.method).to.have.been.called
 
-    expect(func=my_spy.method).to.have.not_been.called
+    expect(my_spy.method).to.have.not_been.called
 
-    expect(func=my_spy.method).to.have.been.called.once
+    expect(my_spy.method).to.have.been.called.once
 
-    expect(func=my_spy.method).to.have.been.called.exactly(2)
+    expect(my_spy.method).to.have.been.called.exactly(2)
 
 Installation
 ------------

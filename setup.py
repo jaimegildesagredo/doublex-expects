@@ -2,7 +2,7 @@
 
 from setuptools import setup, find_packages
 
-requirements = open('requirements.txt').read().splitlines()
+requirements = []  #open('requirements.txt').read().splitlines()
 long_description = open('README.rst').read()
 
 setup(
@@ -17,8 +17,8 @@ setup(
     packages=find_packages(exclude=['specs', 'specs.*']),
     install_requires=requirements,
     entry_points={
-        'expects.plugins': [
-            'func = doublex_expects:Spy'
+        'expects.type_plugins': [
+            'doublex.internal.Method = doublex_expects:Spy'
         ]
     },
     classifiers=[

@@ -1,2 +1,2 @@
-expects
+-e git+https://github.com/jaimegildesagredo/expects.git#egg=expects
 doublex
