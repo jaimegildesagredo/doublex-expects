@@ -9,7 +9,7 @@ Doublex Expects
     :target: https://pypi.python.org/pypi/doublex-expects
     :alt: Number of PyPI downloads
 
-.. image:: https://secure.travis-ci.org/jaimegildesagredo/doublex-expects.png?branch=master
+.. image:: https://secure.travis-ci.org/jaimegildesagredo/doublex-expects.svg?branch=master
     :target: http://travis-ci.org/jaimegildesagredo/doublex-expects
 
 **Doublex-expects** is an `Expects <https://github.com/jaimegildesagredo/expects>`_ plugin for `Doublex <https://pypi.python.org/pypi/doublex>`_ test doubles assertions.
