@@ -1,3 +1,1 @@
--r requirements.txt
-
 -e git+git://github.com/nestorsalceda/mamba.git#egg=mamba
