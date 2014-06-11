@@ -1,2 +1,2 @@
--e https://github.com/jaimegildesagredo/expects/archive/master.zip#egg=expects
+-e git+git://github.com/jaimegildesagredo/expects.git#egg=expects
 doublex
