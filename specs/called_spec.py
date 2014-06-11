@@ -136,15 +136,3 @@ with describe('called'):
 
                 with failure(self.method, 'been called not with args {!r} and {!r}'.format((self.arg1,), self.kwargs)):
                     expect(self.method).been.called.not_with_args(self.arg1, **self.kwargs)
-
-            #with it('should pass if called a different amount of times'):
-                #self.method()
-
-                #expect(self.method).to.have.been.called.not_exactly(2)
-
-            #with it('should fail if called exactly x times'):
-                #self.method()
-                #self.method()
-
-                #with failure(self.method, 'to have been called not exactly 2 times'):
-                    #expect(self.method).to.have.been.called.not_exactly(2)
