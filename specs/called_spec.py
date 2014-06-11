@@ -8,6 +8,9 @@ from expects.testing import failure
 with describe('called'):
     with before.each:
         self.method = doublex.Spy().method
+        self.arg1 = 1
+        self.arg2 = 2
+        self.kwargs = {'foo': 1, 'bar': 2}
 
     with it('should pass if method called'):
         self.method()
@@ -88,3 +91,60 @@ with describe('called'):
 
                 with failure(self.method, 'to have been called not exactly 2 times'):
                     expect(self.method).to.have.been.called.not_exactly(2)
+
+    with describe('with_args'):
+        with it('should pass if called with positional arg'):
+            self.method(self.arg1)
+
+            expect(self.method).to.have.been.called.with_args(self.arg1)
+
+        with it('should pass if called with multiple positional args'):
+            self.method(self.arg1, self.arg2)
+
+            expect(self.method).to.have.been.called.with_args(self.arg1, self.arg2)
+
+        with it('should pass if called with keyword args'):
+            self.method(**self.kwargs)
+
+            expect(self.method).been.called.with_args(**self.kwargs)
+
+        with it('should pass if called with positional and keyword args'):
+            self.method(self.arg1, self.arg2, **self.kwargs)
+
+            expect(self.method).been.called.with_args(self.arg1, self.arg2, **self.kwargs)
+
+        with it('should fail if not called with positional arg'):
+            self.method()
+
+            with failure(self.method, 'to have been called with args {!r}'.format((self.arg1,))):
+                expect(self.method).to.have.been.called.with_args(self.arg1)
+
+        with it('should fail if not called with keyword args'):
+            self.method()
+
+            with failure(self.method, 'been called with args {!r}'.format(self.kwargs)):
+                expect(self.method).been.called.with_args(**self.kwargs)
+
+        with context('#negated'):
+            with it('should pass if called with different positional arg'):
+                self.method(self.arg1)
+
+                expect(self.method).been.called.not_with_args(self.arg1, self.arg2)
+
+            with it('should fail if called with args'):
+                self.method(self.arg1, **self.kwargs)
+
+                with failure(self.method, 'been called not with args {!r} and {!r}'.format((self.arg1,), self.kwargs)):
+                    expect(self.method).been.called.not_with_args(self.arg1, **self.kwargs)
+
+            #with it('should pass if called a different amount of times'):
+                #self.method()
+
+                #expect(self.method).to.have.been.called.not_exactly(2)
+
+            #with it('should fail if called exactly x times'):
+                #self.method()
+                #self.method()
+
+                #with failure(self.method, 'to have been called not exactly 2 times'):
+                    #expect(self.method).to.have.been.called.not_exactly(2)

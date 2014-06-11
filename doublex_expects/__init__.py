@@ -44,3 +44,26 @@ class Spy(Expectation):
                 self._actual.double,
                 self._actual.name,
                 doublex.internal.InvocationContext(doublex.ANY_ARG)))
+
+    def with_args(self, *args, **kwargs):
+        self._assert(self._was_called_with_args(args, kwargs),
+                     *self._get_message_for(args, kwargs))
+
+    def _was_called_with_args(self, args, kwargs):
+        return self._actual._was_called(
+            doublex.internal.InvocationContext(*args, **kwargs),
+            doublex.matchers.any_time)
+
+    def _get_message_for(self, args, kwargs):
+        result = []
+
+        if len(args) > 0:
+            result.append(repr(args))
+
+        if len(kwargs) > 0:
+            result.append(repr(kwargs))
+
+        if len(result) == 2:
+            result.insert(1, 'and')
+
+        return result
