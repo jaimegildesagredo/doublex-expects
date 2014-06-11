@@ -24,7 +24,7 @@ with describe('called'):
         expect(self.method).to.have.been.called
 
     with it('should fail if method not called'):
-        with failure(self.method, 'to have been called'):
+        with failure('to have been called'):
             expect(self.method).to.have.been.called
 
     with context('#negated'):
@@ -34,7 +34,7 @@ with describe('called'):
         with it('should fail if called'):
             self.method()
 
-            with failure(self.method, 'to have not been called'):
+            with failure('to have not been called'):
                 expect(self.method).to.have.not_been.called
 
     with describe('once'):
@@ -47,10 +47,7 @@ with describe('called'):
             self.method()
             self.method()
 
-            with failure(
-                self.method,
-                'to have been called once but was called 2 times'):
-
+            with failure('to have been called once but was called 2 times'):
                 expect(self.method).to.have.been.called.once
 
         with context('#negated'):
@@ -63,7 +60,7 @@ with describe('called'):
             with it('should fail if called once'):
                 self.method()
 
-                with failure(self.method, 'to have been called not once'):
+                with failure('to have been called not once'):
                     expect(self.method).to.have.been.called.not_once
 
     with describe('exactly'):
@@ -76,7 +73,7 @@ with describe('called'):
         with it('should fail if called a different amount of times'):
             self.method()
 
-            with failure(self.method, 'to have been called exactly 2 times'):
+            with failure('to have been called exactly 2 times'):
                 expect(self.method).to.have.been.called.exactly(2)
 
         with context('#negated'):
@@ -89,7 +86,7 @@ with describe('called'):
                 self.method()
                 self.method()
 
-                with failure(self.method, 'to have been called not exactly 2 times'):
+                with failure('to have been called not exactly 2 times'):
                     expect(self.method).to.have.been.called.not_exactly(2)
 
     with describe('with_args'):
@@ -116,13 +113,13 @@ with describe('called'):
         with it('should fail if not called with positional arg'):
             self.method()
 
-            with failure(self.method, 'to have been called with args {!r}'.format((self.arg1,))):
+            with failure('to have been called with args {!r}'.format((self.arg1,))):
                 expect(self.method).to.have.been.called.with_args(self.arg1)
 
         with it('should fail if not called with keyword args'):
             self.method()
 
-            with failure(self.method, 'been called with args {!r}'.format(self.kwargs)):
+            with failure('been called with args {!r}'.format(self.kwargs)):
                 expect(self.method).been.called.with_args(**self.kwargs)
 
         with context('#negated'):
@@ -134,5 +131,5 @@ with describe('called'):
             with it('should fail if called with args'):
                 self.method(self.arg1, **self.kwargs)
 
-                with failure(self.method, 'been called not with args {!r} and {!r}'.format((self.arg1,), self.kwargs)):
+                with failure('been called not with args {!r} and {!r}'.format((self.arg1,), self.kwargs)):
                     expect(self.method).been.called.not_with_args(self.arg1, **self.kwargs)
