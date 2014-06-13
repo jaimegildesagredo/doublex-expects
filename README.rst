@@ -1,3 +1,4 @@
+===============
 Doublex Expects
 ===============
 
@@ -15,7 +16,7 @@ Doublex Expects
 This is a addon plugin for the `Expects <https://github.com/jaimegildesagredo/expects>`_ assertion library. It provides assertions for the `Doublex <https://pypi.python.org/pypi/doublex>`_ test double library.
 
 Installation
-------------
+=======
 
 You can install the last stable release of Doublex-Expects from PyPI using pip or easy_install.
 
@@ -31,7 +32,7 @@ Also you can install the latest sources from Github.
 
 
 Usage
------
+=======
 
 There is nothing special you need to do. Just import the ``expect`` callable and start writing assertions for test doubles.
 
@@ -43,78 +44,86 @@ There is nothing special you need to do. Just import the ``expect`` callable and
     my_spy = Spy()
 
     expect(my_spy.method).to.have.been.called
- 
-Assertions
------
 
-#### called
+Assertions
+=======
+
+
+called
+------
 
 Assert that a spy has been called. Negation passes through.
 
 .. code-block:: python
-	
+
 	expect(my_spy.method).to.have.been.called
 	expect(my_spy.method).to.have.not_been.called
 
 Note that `called` can be used as a chaniable method.
 
-#### once
+once
+------
 
 Assert that a spy has been called exactly once.
 
 .. code-block:: python
-	
+
 	expect(my_spy.method).to.have.been.called.once
 	expect(my_spy.method).to.have.been.called.not_once
 
-#### twice
+twice
+------
 
 Assert that a spy has been called exactly twice.
 
 .. code-block:: python
-	
+
 	expect(my_spy.method).to.have.been.called.twice
 	expect(my_spy.method).to.have.been.called.not_twice
 
-#### exactly
+exactly
+------
 
 Assert that a spy has been called exactly n times.
 
 .. code-block:: python
-	
+
 	expect(my_spy.method).to.have.been.called.exactly(2)
 	expect(my_spy.method).to.have.been.called.not_exactly(2)
 
-	
-#### min
+
+min
+------
 
 Assert that a spy has been called minimum of `n` times.
 
 .. code-block:: python
-	
+
 	expect(my_spy.method).to.have.been.called.min(2)
 	expect(my_spy.method).to.have.been.called.not_min(2)
 
-#### max
+max
+------
 
 Assert that a spy has been called maximum of `n` times.
 
 .. code-block:: python
-	
+
 	expect(my_spy.method).to.have.been.called.max(2)
 	expect(my_spy.method).to.have.been.called.not_max(2)
-	
-#### with_args
+
+with_args
+------
 
 Assert that a spy has been called with given arguments.
 
 .. code-block:: python
-		
+
 	expect(my_spy.method).to.have.been.called.with_args('foo', key='bar')
 	expect(my_spy.method).to.have.been.called.not_with_args('bar', key='foo')
-    
+
 Specs
------
+=======
 
 To run the specs you should install the testing requirements and then run `mamba`.
 
@@ -124,6 +133,6 @@ To run the specs you should install the testing requirements and then run `mamba
     $ mamba
 
 License
--------
+=======
 
 The Doublex-Expects is released under the `Apache2 license <http://www.apache.org/licenses/LICENSE-2.0.html>`_.
