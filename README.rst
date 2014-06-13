@@ -12,47 +12,7 @@ Doublex Expects
 .. image:: https://secure.travis-ci.org/jaimegildesagredo/doublex-expects.svg?branch=master
     :target: http://travis-ci.org/jaimegildesagredo/doublex-expects
 
-**Doublex-expects** is an `Expects <https://github.com/jaimegildesagredo/expects>`_ plugin for `Doublex <https://pypi.python.org/pypi/doublex>`_ test doubles assertions.
-
-Usage
------
-
-Just import the ``expect`` callable and start writing assertions for test doubles.
-
-.. code-block:: python
-
-    from expects import expect
-    from doublex import Spy
-
-    my_spy = Spy()
-
-    expect(my_spy.method).to.have.been.called
-
-    expect(my_spy.method).to.have.not_been.called
-
-    expect(my_spy.method).to.have.been.called.once
-
-    expect(my_spy.method).to.have.been.called.not_once
-
-    expect(my_spy.method).to.have.been.called.twice
-
-    expect(my_spy.method).to.have.been.called.not_twice
-
-    expect(my_spy.method).to.have.been.called.exactly(2)
-
-    expect(my_spy.method).to.have.been.called.not_exactly(3)
-
-    expect(my_spy.method).to.have.been.called.max(2)
-
-    expect(my_spy.method).to.have.been.called.not_max(3)
-
-    expect(my_spy.method).to.have.been.called.min(2)
-
-    expect(my_spy.method).to.have.been.called.not_min(3)
-
-    expect(my_spy.method).to.have.been.called.with_args('foo', key='bar')
-
-    expect(my_spy.method).to.have.been.called.not_with_args('bar', key='foo')
+This is a addon plugin for the `Expects <https://github.com/jaimegildesagredo/expects>`_ assertion library. It provides assertions for the `Doublex <https://pypi.python.org/pypi/doublex>`_ test double library.
 
 Installation
 ------------
@@ -69,6 +29,90 @@ Also you can install the latest sources from Github.
 
      $ pip install -e git+git://github.com/jaimegildesagredo/doublex-expects.git#egg=doublex-expects
 
+
+Usage
+-----
+
+There is nothing special you need to do. Just import the ``expect`` callable and start writing assertions for test doubles.
+
+.. code-block:: python
+
+    from expects import expect
+    from doublex import Spy
+
+    my_spy = Spy()
+
+    expect(my_spy.method).to.have.been.called
+ 
+Assertions
+-----
+
+#### called
+
+Assert that a spy has been called. Negation passes through.
+
+.. code-block:: python
+	
+	expect(my_spy.method).to.have.been.called
+	expect(my_spy.method).to.have.not_been.called
+
+Note that `called` can be used as a chaniable method.
+
+#### once
+
+Assert that a spy has been called exactly once.
+
+.. code-block:: python
+	
+	expect(my_spy.method).to.have.been.called.once
+	expect(my_spy.method).to.have.been.called.not_once
+
+#### twice
+
+Assert that a spy has been called exactly twice.
+
+.. code-block:: python
+	
+	expect(my_spy.method).to.have.been.called.twice
+	expect(my_spy.method).to.have.been.called.not_twice
+
+#### exactly
+
+Assert that a spy has been called exactly n times.
+
+.. code-block:: python
+	
+	expect(my_spy.method).to.have.been.called.exactly(2)
+	expect(my_spy.method).to.have.been.called.not_exactly(2)
+
+	
+#### min
+
+Assert that a spy has been called minimum of `n` times.
+
+.. code-block:: python
+	
+	expect(my_spy.method).to.have.been.called.min(2)
+	expect(my_spy.method).to.have.been.called.not_min(2)
+
+#### max
+
+Assert that a spy has been called maximum of `n` times.
+
+.. code-block:: python
+	
+	expect(my_spy.method).to.have.been.called.max(2)
+	expect(my_spy.method).to.have.been.called.not_max(2)
+	
+#### with_args
+
+Assert that a spy has been called with given arguments.
+
+.. code-block:: python
+		
+	expect(my_spy.method).to.have.been.called.with_args('foo', key='bar')
+	expect(my_spy.method).to.have.been.called.not_with_args('bar', key='foo')
+    
 Specs
 -----
 
