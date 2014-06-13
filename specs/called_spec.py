@@ -63,6 +63,34 @@ with describe('called'):
                 with failure('to have been called not once'):
                     expect(self.method).to.have.been.called.not_once
 
+    with describe('twice'):
+        with it('should pass if called twice'):
+            self.method()
+            self.method()
+
+            expect(self.method).to.have.been.called.twice
+
+        with it('should fail if called more than twice'):
+            self.method()
+            self.method()
+            self.method()
+
+            with failure('to have been called twice but was called 3 times'):
+                expect(self.method).to.have.been.called.twice
+
+        with context('#negated'):
+            with it('should pass if not called twice'):
+                self.method()
+
+                expect(self.method).to.have.been.called.not_twice
+
+            with it('should fail if called twice'):
+                self.method()
+                self.method()
+
+                with failure('to have been called not twice'):
+                    expect(self.method).to.have.been.called.not_twice
+
     with describe('exactly'):
         with it('should pass if called exactly x times'):
             self.method()

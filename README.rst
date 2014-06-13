@@ -34,6 +34,10 @@ Just import the ``expect`` callable and start writing assertions for test double
 
     expect(my_spy.method).to.have.been.called.not_once
 
+    expect(my_spy.method).to.have.been.called.twice
+
+    expect(my_spy.method).to.have.been.called.not_twice
+
     expect(my_spy.method).to.have.been.called.exactly(2)
 
     expect(my_spy.method).been.called.not_exactly(3)
