@@ -40,19 +40,19 @@ Just import the ``expect`` callable and start writing assertions for test double
 
     expect(my_spy.method).to.have.been.called.exactly(2)
 
-    expect(my_spy.method).been.called.not_exactly(3)
+    expect(my_spy.method).to.have.been.called.not_exactly(3)
 
     expect(my_spy.method).to.have.been.called.max(2)
 
-    expect(my_spy.method).been.called.not_max(3)
+    expect(my_spy.method).to.have.been.called.not_max(3)
 
     expect(my_spy.method).to.have.been.called.min(2)
 
-    expect(my_spy.method).been.called.not_min(3)
+    expect(my_spy.method).to.have.been.called.not_min(3)
 
-    expect(my_spy.method).been.called.with_args('foo', key='bar')
+    expect(my_spy.method).to.have.been.called.with_args('foo', key='bar')
 
-    expect(my_spy.method).been.called.not_with_args('bar', key='foo')
+    expect(my_spy.method).to.have.been.called.not_with_args('bar', key='foo')
 
 Installation
 ------------

@@ -190,12 +190,12 @@ with describe('called'):
         with it('should pass if called with keyword args'):
             self.method(**self.kwargs)
 
-            expect(self.method).been.called.with_args(**self.kwargs)
+            expect(self.method).to.have.been.called.with_args(**self.kwargs)
 
         with it('should pass if called with positional and keyword args'):
             self.method(self.arg1, self.arg2, **self.kwargs)
 
-            expect(self.method).been.called.with_args(self.arg1, self.arg2, **self.kwargs)
+            expect(self.method).to.have.been.called.with_args(self.arg1, self.arg2, **self.kwargs)
 
         with it('should fail if not called with positional arg'):
             self.method()
@@ -207,16 +207,16 @@ with describe('called'):
             self.method()
 
             with failure('been called with args {!r}'.format(self.kwargs)):
-                expect(self.method).been.called.with_args(**self.kwargs)
+                expect(self.method).to.have.been.called.with_args(**self.kwargs)
 
         with context('#negated'):
             with it('should pass if called with different positional arg'):
                 self.method(self.arg1)
 
-                expect(self.method).been.called.not_with_args(self.arg1, self.arg2)
+                expect(self.method).to.have.been.called.not_with_args(self.arg1, self.arg2)
 
             with it('should fail if called with args'):
                 self.method(self.arg1, **self.kwargs)
 
                 with failure('been called not with args {!r} and {!r}'.format((self.arg1,), self.kwargs)):
-                    expect(self.method).been.called.not_with_args(self.arg1, **self.kwargs)
+                    expect(self.method).to.have.been.called.not_with_args(self.arg1, **self.kwargs)
