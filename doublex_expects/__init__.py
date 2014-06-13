@@ -37,6 +37,12 @@ class Spy(Expectation):
     def exactly(self, times):
         self._assert(self._times == times, '{} times'.format(times))
 
+    def max(self, times):
+        self._assert(self._times <= times, '{} times'.format(times))
+
+    def min(self, times):
+        self._assert(self._times >= times, '{} times'.format(times))
+
     @property
     def _times(self):
         return self._actual.double._recorded.count(

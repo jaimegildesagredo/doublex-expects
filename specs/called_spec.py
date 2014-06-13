@@ -89,6 +89,65 @@ with describe('called'):
                 with failure('to have been called not exactly 2 times'):
                     expect(self.method).to.have.been.called.not_exactly(2)
 
+    with describe('max'):
+        with it('should pass if called maximum x times'):
+            self.method()
+            self.method()
+            self.method()
+            self.method()
+
+            expect(self.method).to.have.been.called.max(4)
+
+        with it('should fail if called more times than the maximum'):
+            self.method()
+            self.method()
+            self.method()
+
+            with failure('to have been called max 2 times'):
+                expect(self.method).to.have.been.called.max(2)
+
+        with context('#negated'):
+            with it('should pass if called more times than the maximum'):
+                self.method()
+                self.method()
+                self.method()
+
+                expect(self.method).to.have.been.called.not_max(2)
+
+            with it('should fail if not called maximum x times'):
+                self.method()
+
+                with failure('to have been called not max 2 times'):
+                    expect(self.method).to.have.been.called.not_max(2)
+
+    with describe('min'):
+        with it('should pass if called minimum x times'):
+            self.method()
+            self.method()
+            self.method()
+            self.method()
+
+            expect(self.method).to.have.been.called.min(4)
+
+        with it('should fail if called less times than the minimum'):
+            self.method()
+
+            with failure('to have been called min 2 times'):
+                expect(self.method).to.have.been.called.min(2)
+
+        with context('#negated'):
+            with it('should pass if called less times than the minimun'):
+                self.method()
+
+                expect(self.method).to.have.been.called.not_min(2)
+
+            with it('should fail if not called minimum x times'):
+                self.method()
+                self.method()
+
+                with failure('to have been called not min 2 times'):
+                    expect(self.method).to.have.been.called.not_min(2)
+
     with describe('with_args'):
         with it('should pass if called with positional arg'):
             self.method(self.arg1)
