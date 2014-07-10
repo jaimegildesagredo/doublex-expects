@@ -2,26 +2,7 @@
 
 from setuptools import setup, find_packages
 
-def _parse_requirements(path):
-    reqs, links = [], []
-
-    for req in open(path):
-        req = req.split()
-
-        if req[0] == '-e':
-            links.append(req[1])
-            reqs.append(_get_req_name(req[1]))
-        else:
-            reqs.append(req[0])
-
-    return reqs, links
-
-
-def _get_req_name(value):
-    return value.split('#')[1].split('=')[1]
-
-
-requirements, dependency_links = _parse_requirements('requirements.txt')
+requirements = open('requirements.txt').read().splitlines()
 long_description = open('README.rst').read()
 
 setup(
@@ -35,7 +16,6 @@ setup(
     license='Apache 2.0',
     packages=find_packages(exclude=['specs', 'specs.*']),
     install_requires=requirements,
-    dependency_links=dependency_links,
     entry_points={
         'expects.type_plugins': [
             'doublex.internal.Method = doublex_expects:Spy'
