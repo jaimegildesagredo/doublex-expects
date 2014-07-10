@@ -65,7 +65,7 @@ Assert that a spy has been called. Negation passes through.
 	expect(my_spy.method).to.have.been.called()
 	expect(my_spy.method).to.have.not_been.called()
 
-Note that `called` can be used as a chainable property.
+Note that ``called`` can be used as a chainable property.
 
 once
 ----
