@@ -43,7 +43,7 @@ There is nothing special you need to do. Just import the ``expect`` callable and
 
     my_spy = Spy()
 
-    expect(my_spy.method).to.have.been.called
+    expect(my_spy.method).to.have.been.called()
 
 Assertions
 =======
@@ -56,10 +56,10 @@ Assert that a spy has been called. Negation passes through.
 
 .. code-block:: python
 
-	expect(my_spy.method).to.have.been.called
-	expect(my_spy.method).to.have.not_been.called
+	expect(my_spy.method).to.have.been.called()
+	expect(my_spy.method).to.have.not_been.called()
 
-Note that `called` can be used as a chaniable method.
+Note that `called` can be used as a chainable property.
 
 once
 ------
