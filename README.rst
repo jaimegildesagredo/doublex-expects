@@ -13,10 +13,16 @@ Doublex Expects
 .. image:: https://secure.travis-ci.org/jaimegildesagredo/doublex-expects.svg?branch=master
     :target: http://travis-ci.org/jaimegildesagredo/doublex-expects
 
-This is a addon plugin for the `Expects <https://github.com/jaimegildesagredo/expects>`_ assertion library. It provides assertions for the `Doublex <https://pypi.python.org/pypi/doublex>`_ test double library.
+This is an addon plugin for the `Expects <https://github.com/jaimegildesagredo/expects>`_ assertion library. It provides assertions for the `Doublex <https://pypi.python.org/pypi/doublex>`_ test double library.
 
 Installation
 ============
+
+First you need to have ` <https://github.com/jaimegildesagredo/expects>`_ installed. Also the latest avaliable code is required in order to work with Doublex-expects.
+
+.. code-block:: bash
+
+    $ pip install -e git+git://github.com/jaimegildesagredo/expects.git#egg=expects
 
 You can install the last stable release of Doublex-Expects from PyPI using pip or easy_install.
 

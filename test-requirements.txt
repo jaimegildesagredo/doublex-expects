@@ -1,1 +1,2 @@
+-e git+git://github.com/jaimegildesagredo/expects.git#egg=expects
 mamba>=0.8
