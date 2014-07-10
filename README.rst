@@ -16,7 +16,7 @@ Doublex Expects
 This is a addon plugin for the `Expects <https://github.com/jaimegildesagredo/expects>`_ assertion library. It provides assertions for the `Doublex <https://pypi.python.org/pypi/doublex>`_ test double library.
 
 Installation
-=======
+============
 
 You can install the last stable release of Doublex-Expects from PyPI using pip or easy_install.
 
@@ -32,7 +32,7 @@ Also you can install the latest sources from Github.
 
 
 Usage
-=======
+=====
 
 There is nothing special you need to do. Just import the ``expect`` callable and start writing assertions for test doubles.
 
@@ -46,7 +46,7 @@ There is nothing special you need to do. Just import the ``expect`` callable and
     expect(my_spy.method).to.have.been.called()
 
 Assertions
-=======
+==========
 
 
 called
@@ -62,7 +62,7 @@ Assert that a spy has been called. Negation passes through.
 Note that `called` can be used as a chainable property.
 
 once
-------
+----
 
 Assert that a spy has been called exactly once.
 
@@ -72,7 +72,7 @@ Assert that a spy has been called exactly once.
 	expect(my_spy.method).not_to.have.been.called.once
 
 twice
-------
+-----
 
 Assert that a spy has been called exactly twice.
 
@@ -82,7 +82,7 @@ Assert that a spy has been called exactly twice.
 	expect(my_spy.method).not_to.have.been.called.twice
 
 exactly
-------
+-------
 
 Assert that a spy has been called exactly n times.
 
@@ -93,7 +93,7 @@ Assert that a spy has been called exactly n times.
 
 
 min
-------
+---
 
 Assert that a spy has been called minimum of `n` times.
 
@@ -103,7 +103,7 @@ Assert that a spy has been called minimum of `n` times.
 	expect(my_spy.method).not_to.have.been.called.min(2)
 
 max
-------
+---
 
 Assert that a spy has been called maximum of `n` times.
 
@@ -113,7 +113,7 @@ Assert that a spy has been called maximum of `n` times.
 	expect(my_spy.method).not_to.have.been.called.max(2)
 
 with_args
-------
+---------
 
 Assert that a spy has been called with given arguments.
 
@@ -123,12 +123,13 @@ Assert that a spy has been called with given arguments.
 	expect(my_spy.method).not_to.have.been.called.with_args('bar', key='foo')
 
 Specs
-=======
+=====
 
 To run the specs you should install the testing requirements and then run `mamba`.
 
 .. code-block:: bash
 
+    $ python setup.py develop
     $ pip install -r test-requirements.txt
     $ mamba
 
