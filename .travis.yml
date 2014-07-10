@@ -8,10 +8,7 @@ python:
 
 install:
  - python setup.py sdist
- - mkdir tmp
- - tar xvf dist/doublex-expects-*.tar.gz -C tmp
- - python tmp/doublex-expects-*/setup.py install
-
+ - pip install dist/doublex-expects-`python setup.py --version`.tar.gz
  - pip install -r test-requirements.txt
 
 script:
