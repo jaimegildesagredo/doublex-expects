@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import doublex
-from expects.expectation import Expectation
+from expects.expectation import Expectation, Proxy
 
 
 class Spy(Expectation):
@@ -19,15 +19,7 @@ class Spy(Expectation):
 
     @property
     def called(self):
-        self._assert(self._was_called)
-
-        return self
-
-    @property
-    def _was_called(self):
-        return self._actual._was_called(
-            doublex.internal.InvocationContext(doublex.ANY_ARG),
-            doublex.matchers.any_time)
+        return _Called(self)
 
     @property
     def once(self):
@@ -78,3 +70,14 @@ class Spy(Expectation):
             result.insert(1, 'and')
 
         return result
+
+
+class _Called(Proxy):
+    def __call__(self):
+        self._assert(self._was_called)
+
+    @property
+    def _was_called(self):
+        return self._actual._was_called(
+            doublex.internal.InvocationContext(doublex.ANY_ARG),
+            doublex.matchers.any_time)

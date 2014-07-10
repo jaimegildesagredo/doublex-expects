@@ -69,7 +69,7 @@ Assert that a spy has been called exactly once.
 .. code-block:: python
 
 	expect(my_spy.method).to.have.been.called.once
-	expect(my_spy.method).to.have.been.called.not_once
+	expect(my_spy.method).not_to.have.been.called.once
 
 twice
 ------
@@ -79,7 +79,7 @@ Assert that a spy has been called exactly twice.
 .. code-block:: python
 
 	expect(my_spy.method).to.have.been.called.twice
-	expect(my_spy.method).to.have.been.called.not_twice
+	expect(my_spy.method).not_to.have.been.called.twice
 
 exactly
 ------
@@ -88,8 +88,8 @@ Assert that a spy has been called exactly n times.
 
 .. code-block:: python
 
-	expect(my_spy.method).to.have.been.called.exactly(2)
-	expect(my_spy.method).to.have.been.called.not_exactly(2)
+	expect(my_spy.method).to.have.been.called.exactly(3)
+	expect(my_spy.method).not_to.have.been.called.exactly(3)
 
 
 min
@@ -100,7 +100,7 @@ Assert that a spy has been called minimum of `n` times.
 .. code-block:: python
 
 	expect(my_spy.method).to.have.been.called.min(2)
-	expect(my_spy.method).to.have.been.called.not_min(2)
+	expect(my_spy.method).not_to.have.been.called.min(2)
 
 max
 ------
@@ -110,7 +110,7 @@ Assert that a spy has been called maximum of `n` times.
 .. code-block:: python
 
 	expect(my_spy.method).to.have.been.called.max(2)
-	expect(my_spy.method).to.have.been.called.not_max(2)
+	expect(my_spy.method).not_to.have.been.called.max(2)
 
 with_args
 ------
@@ -120,7 +120,7 @@ Assert that a spy has been called with given arguments.
 .. code-block:: python
 
 	expect(my_spy.method).to.have.been.called.with_args('foo', key='bar')
-	expect(my_spy.method).to.have.been.called.not_with_args('bar', key='foo')
+	expect(my_spy.method).not_to.have.been.called.with_args('bar', key='foo')
 
 Specs
 =======
