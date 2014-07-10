@@ -2,11 +2,11 @@
 Doublex Expects
 ===============
 
-.. image:: http://img.shields.io/pypi/v/doublex-expects.svg
+.. image:: https://img.shields.io/pypi/v/doublex-expects.svg
     :target: https://pypi.python.org/pypi/doublex-expects
     :alt: Latest version
 
-.. image:: http://img.shields.io/pypi/dm/doublex-expects.svg
+.. image:: https://img.shields.io/pypi/dm/doublex-expects.svg
     :target: https://pypi.python.org/pypi/doublex-expects
     :alt: Number of PyPI downloads
 
