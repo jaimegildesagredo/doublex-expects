@@ -18,7 +18,7 @@ This is an addon plugin for the `Expects <https://github.com/jaimegildesagredo/e
 Installation
 ============
 
-First you need to have ` <https://github.com/jaimegildesagredo/expects>`_ installed. Also the latest avaliable code is required in order to work with Doublex-expects.
+First you need to have `Expects <https://github.com/jaimegildesagredo/expects>`_ installed. Also the latest avaliable code is required in order to work with Doublex-expects.
 
 .. code-block:: bash
 
