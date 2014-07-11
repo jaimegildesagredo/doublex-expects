@@ -18,11 +18,11 @@ This is an addon plugin for the `Expects <https://github.com/jaimegildesagredo/e
 Installation
 ============
 
-First you need to have `Expects <https://github.com/jaimegildesagredo/expects>`_ installed. Also the latest avaliable code is required in order to work with Doublex-expects.
+First you need to have `Expects <https://github.com/jaimegildesagredo/expects>`_ installed.
 
 .. code-block:: bash
 
-    $ pip install -e git+git://github.com/jaimegildesagredo/expects.git#egg=expects
+    $ pip install expects>=0.3
 
 You can install the last stable release of Doublex-Expects from PyPI using pip or easy_install.
 
