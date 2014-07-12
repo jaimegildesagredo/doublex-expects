@@ -49,7 +49,7 @@ There is nothing special you need to do. Just import the ``expect`` callable and
 
     my_spy = Spy()
 
-    expect(my_spy.method).to.have.been.called()
+    expect(my_spy.method).to(have_been_called)
 
 Assertions
 ==========
@@ -62,10 +62,8 @@ Assert that a spy has been called. Negation passes through.
 
 .. code-block:: python
 
-	expect(my_spy.method).to.have.been.called()
-	expect(my_spy.method).to.have.not_been.called()
-
-Note that ``called`` can be used as a chainable property.
+	expect(my_spy.method).to(have_been_called)
+	expect(my_spy.method).not_to(have_been_called)
 
 once
 ----
@@ -74,8 +72,8 @@ Assert that a spy has been called exactly once.
 
 .. code-block:: python
 
-	expect(my_spy.method).to.have.been.called.once
-	expect(my_spy.method).not_to.have.been.called.once
+	expect(my_spy.method).to(have_been_called.once)
+	expect(my_spy.method).not_to(have_been_called.once)
 
 twice
 -----
@@ -84,8 +82,8 @@ Assert that a spy has been called exactly twice.
 
 .. code-block:: python
 
-	expect(my_spy.method).to.have.been.called.twice
-	expect(my_spy.method).not_to.have.been.called.twice
+	expect(my_spy.method).to(have_been_called.twice)
+	expect(my_spy.method).not_to(have_been_called.twice)
 
 exactly
 -------
@@ -94,8 +92,8 @@ Assert that a spy has been called exactly n times.
 
 .. code-block:: python
 
-	expect(my_spy.method).to.have.been.called.exactly(3)
-	expect(my_spy.method).not_to.have.been.called.exactly(3)
+	expect(my_spy.method).to(have_been_called.exactly(3))
+	expect(my_spy.method).not_to(have_been_called.exactly(3))
 
 
 min
@@ -105,8 +103,8 @@ Assert that a spy has been called minimum of `n` times.
 
 .. code-block:: python
 
-	expect(my_spy.method).to.have.been.called.min(2)
-	expect(my_spy.method).not_to.have.been.called.min(2)
+	expect(my_spy.method).to(have_been_called.min(2))
+	expect(my_spy.method).not_to(have_been_called.min(2))
 
 max
 ---
@@ -115,8 +113,8 @@ Assert that a spy has been called maximum of `n` times.
 
 .. code-block:: python
 
-	expect(my_spy.method).to.have.been.called.max(2)
-	expect(my_spy.method).not_to.have.been.called.max(2)
+	expect(my_spy.method).to(have_been_called.max(2))
+	expect(my_spy.method).not_to(have_been_called.max(2))
 
 with_args
 ---------
@@ -125,8 +123,8 @@ Assert that a spy has been called with given arguments.
 
 .. code-block:: python
 
-	expect(my_spy.method).to.have.been.called.with_args('foo', key='bar')
-	expect(my_spy.method).not_to.have.been.called.with_args('bar', key='foo')
+	expect(my_spy.method).to(have_been_called.with_args('foo', key='bar'))
+	expect(my_spy.method).not_to(have_been_called.with_args('bar', key='foo'))
 
 Specs
 =====
