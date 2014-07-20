@@ -1,83 +1,155 @@
 # -*- coding: utf-8 -*-
 
 import doublex
-from expects.expectation import Expectation, Proxy
+from expects.matchers.matcher import Matcher
 
 
-class Spy(Expectation):
-    @property
-    def to(self):
-        return self
-
-    @property
-    def have(self):
-        return self
-
-    @property
-    def been(self):
-        return self
-
-    @property
-    def called(self):
-        return _Called(self)
-
-    @property
-    def once(self):
-        self._assert(self._times == 1,
-                     'but was called {} times'.format(self._times))
+class HaveBeenCalled(Matcher):
+    def with_args(self, *args, **kwargs):
+        return CalledWithArgs(*args, **kwargs)
 
     @property
     def twice(self):
-        self._assert(self._times == 2,
-                     'but was called {} times'.format(self._times))
-
-    def exactly(self, times):
-        self._assert(self._times == times, '{} times'.format(times))
-
-    def max(self, times):
-        self._assert(self._times <= times, '{} times'.format(times))
-
-    def min(self, times):
-        self._assert(self._times >= times, '{} times'.format(times))
+        return CalledTwice()
 
     @property
-    def _times(self):
-        return self._actual.double._recorded.count(
-            doublex.internal.Invocation(
-                self._actual.double,
-                self._actual.name,
-                doublex.internal.InvocationContext(doublex.ANY_ARG)))
+    def once(self):
+        return CalledOnce()
 
-    def with_args(self, *args, **kwargs):
-        self._assert(self._was_called_with_args(args, kwargs),
-                     *self._get_message_for(args, kwargs))
+    def min(self, times):
+        return CalledMin(times)
 
-    def _was_called_with_args(self, args, kwargs):
-        return self._actual._was_called(
-            doublex.internal.InvocationContext(*args, **kwargs),
+    def max(self, times):
+        return CalledMax(times)
+
+    def exactly(self, times):
+        return CalledExactly(times)
+
+    def _match(self, subject):
+        return subject._was_called(
+            doublex.internal.InvocationContext(doublex.ANY_ARG),
             doublex.matchers.any_time)
 
-    def _get_message_for(self, args, kwargs):
+    def _description(self, subject):
+        return 'have been called'
+
+
+class CalledExactly(Matcher):
+    def __init__(self, times):
+        self._times = times
+
+    def _match(self, subject):
+        return subject._was_called(
+            doublex.internal.InvocationContext(doublex.ANY_ARG),
+            self._times)
+
+    def _description(self, subject):
+        count = subject.double._recorded.count(
+            doublex.internal.Invocation(
+                subject.double,
+                subject.name,
+                doublex.internal.InvocationContext(doublex.ANY_ARG)))
+
+        return 'have been called exactly {!r} times'.format(self._times)
+
+
+class CalledMax(Matcher):
+    def __init__(self, times):
+        self._times = times
+
+    def _match(self, subject):
+        return subject._was_called(
+            doublex.internal.InvocationContext(doublex.ANY_ARG),
+            doublex.matchers.at_most(self._times))
+
+    def _description(self, subject):
+        count = subject.double._recorded.count(
+            doublex.internal.Invocation(
+                subject.double,
+                subject.name,
+                doublex.internal.InvocationContext(doublex.ANY_ARG)))
+
+        return 'have been called max {!r} times'.format(self._times)
+
+
+class CalledMin(Matcher):
+    def __init__(self, times):
+        self._times = times
+
+    def _match(self, subject):
+        return subject._was_called(
+            doublex.internal.InvocationContext(doublex.ANY_ARG),
+            doublex.matchers.at_least(self._times))
+
+    def _description(self, subject):
+        count = subject.double._recorded.count(
+            doublex.internal.Invocation(
+                subject.double,
+                subject.name,
+                doublex.internal.InvocationContext(doublex.ANY_ARG)))
+
+        return 'have been called min {!r} times'.format(self._times)
+
+
+class CalledOnce(Matcher):
+    def _match(self, subject):
+        return subject._was_called(
+            doublex.internal.InvocationContext(doublex.ANY_ARG),
+            1)
+
+    def _description(self, subject):
+        count = subject.double._recorded.count(
+            doublex.internal.Invocation(
+                subject.double,
+                subject.name,
+                doublex.internal.InvocationContext(doublex.ANY_ARG)))
+
+        return 'have been called once but was called {!r} times'.format(count)
+
+
+class CalledTwice(Matcher):
+    def _match(self, subject):
+        return subject._was_called(
+            doublex.internal.InvocationContext(doublex.ANY_ARG),
+            2)
+
+    def _description(self, subject):
+        count = subject.double._recorded.count(
+            doublex.internal.Invocation(
+                subject.double,
+                subject.name,
+                doublex.internal.InvocationContext(doublex.ANY_ARG)))
+
+        return 'have been called twice but was called {!r} times'.format(count)
+
+
+class CalledWithArgs(Matcher):
+    def __init__(self, *args, **kwargs):
+        self._args = args
+        self._kwargs = kwargs
+
+    def _match(self, subject):
+        return subject._was_called(
+            doublex.internal.InvocationContext(*self._args, **self._kwargs),
+            doublex.matchers.any_time)
+
+    def _description(self, subject):
+        return 'have been called with args {}'.format(self._args_description)
+
+    @property
+    def _args_description(self):
         result = []
 
-        if len(args) > 0:
-            result.append(repr(args))
+        if len(self._args) > 0:
+            result.append(repr(self._args))
 
-        if len(kwargs) > 0:
-            result.append(repr(kwargs))
+        if len(self._kwargs) > 0:
+            result.append(repr(self._kwargs))
 
         if len(result) == 2:
             result.insert(1, 'and')
 
-        return result
+        return ' '.join(result)
 
 
-class _Called(Proxy):
-    def __call__(self):
-        self._assert(self._was_called)
-
-    @property
-    def _was_called(self):
-        return self._actual._was_called(
-            doublex.internal.InvocationContext(doublex.ANY_ARG),
-            doublex.matchers.any_time)
+have_been_called = HaveBeenCalled()

@@ -16,11 +16,6 @@ setup(
     license='Apache 2.0',
     packages=find_packages(exclude=['specs', 'specs.*']),
     install_requires=requirements,
-    entry_points={
-        'expects.type_plugins': [
-            'doublex.internal.Method = doublex_expects:Spy'
-        ]
-    },
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
