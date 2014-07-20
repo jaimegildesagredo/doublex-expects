@@ -44,12 +44,6 @@ class CalledExactly(Matcher):
             self._times)
 
     def _description(self, subject):
-        count = subject.double._recorded.count(
-            doublex.internal.Invocation(
-                subject.double,
-                subject.name,
-                doublex.internal.InvocationContext(doublex.ANY_ARG)))
-
         return 'have been called exactly {!r} times'.format(self._times)
 
 
@@ -63,12 +57,6 @@ class CalledMax(Matcher):
             doublex.matchers.at_most(self._times))
 
     def _description(self, subject):
-        count = subject.double._recorded.count(
-            doublex.internal.Invocation(
-                subject.double,
-                subject.name,
-                doublex.internal.InvocationContext(doublex.ANY_ARG)))
-
         return 'have been called max {!r} times'.format(self._times)
 
 
@@ -82,12 +70,6 @@ class CalledMin(Matcher):
             doublex.matchers.at_least(self._times))
 
     def _description(self, subject):
-        count = subject.double._recorded.count(
-            doublex.internal.Invocation(
-                subject.double,
-                subject.name,
-                doublex.internal.InvocationContext(doublex.ANY_ARG)))
-
         return 'have been called min {!r} times'.format(self._times)
 
 
