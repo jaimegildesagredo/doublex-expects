@@ -13,18 +13,12 @@ Doublex Expects
 .. image:: https://secure.travis-ci.org/jaimegildesagredo/doublex-expects.svg?branch=master
     :target: http://travis-ci.org/jaimegildesagredo/doublex-expects
 
-This is an addon plugin for the `Expects <https://github.com/jaimegildesagredo/expects>`_ assertion library. It provides assertions for the `Doublex <https://pypi.python.org/pypi/doublex>`_ test double library.
+Doublex-Expects is a matchers library for the `Expects <https://github.com/jaimegildesagredo/expects>`_ assertion library. It provides matchers for the `Doublex <https://pypi.python.org/pypi/doublex>`_ test double library.
 
 Installation
 ============
 
-First you need to have `Expects <https://github.com/jaimegildesagredo/expects>`_ installed.
-
-.. code-block:: bash
-
-    $ pip install expects>=0.3
-
-You can install the last stable release of Doublex-Expects from PyPI using pip or easy_install.
+You can install the last stable release from PyPI using pip or easy_install.
 
 .. code-block:: bash
 
@@ -36,100 +30,99 @@ Also you can install the latest sources from Github.
 
      $ pip install -e git+git://github.com/jaimegildesagredo/doublex-expects.git#egg=doublex-expects
 
-
 Usage
 =====
 
-There is nothing special you need to do. Just import the ``expect`` callable and start writing assertions for test doubles.
+Just import the ``expect`` callable and the Doublex-Expects matchers and start writing assertions for test doubles.
 
 .. code-block:: python
 
     from expects import expect
+    from doublex_expects import *
     from doublex import Spy
 
     my_spy = Spy()
 
     expect(my_spy.method).to(have_been_called)
 
-Assertions
-==========
+Matchers
+========
 
-
-called
-------
+have_been_called
+----------------
 
 Assert that a spy has been called. Negation passes through.
 
 .. code-block:: python
 
-	expect(my_spy.method).to(have_been_called)
-	expect(my_spy.method).not_to(have_been_called)
+    expect(my_spy.method).to(have_been_called)
+    expect(my_spy.method).not_to(have_been_called)
 
-once
-----
+have_been_called.once
+---------------------
 
 Assert that a spy has been called exactly once.
 
 .. code-block:: python
 
-	expect(my_spy.method).to(have_been_called.once)
-	expect(my_spy.method).not_to(have_been_called.once)
+    expect(my_spy.method).to(have_been_called.once)
+    expect(my_spy.method).not_to(have_been_called.once)
 
-twice
------
+have_been_called.twice
+----------------------
 
 Assert that a spy has been called exactly twice.
 
 .. code-block:: python
 
-	expect(my_spy.method).to(have_been_called.twice)
-	expect(my_spy.method).not_to(have_been_called.twice)
+    expect(my_spy.method).to(have_been_called.twice)
+    expect(my_spy.method).not_to(have_been_called.twice)
 
-exactly
--------
+have_been_called.exactly
+------------------------
 
 Assert that a spy has been called exactly n times.
 
 .. code-block:: python
 
-	expect(my_spy.method).to(have_been_called.exactly(3))
-	expect(my_spy.method).not_to(have_been_called.exactly(3))
+    expect(my_spy.method).to(have_been_called.exactly(3))
+    expect(my_spy.method).not_to(have_been_called.exactly(3))
 
 
-min
----
+have_been_called.min
+--------------------
 
 Assert that a spy has been called minimum of `n` times.
 
 .. code-block:: python
 
-	expect(my_spy.method).to(have_been_called.min(2))
-	expect(my_spy.method).not_to(have_been_called.min(2))
+    expect(my_spy.method).to(have_been_called.min(2))
+    expect(my_spy.method).not_to(have_been_called.min(2))
 
-max
----
+have_been_called.max
+--------------------
 
 Assert that a spy has been called maximum of `n` times.
 
 .. code-block:: python
 
-	expect(my_spy.method).to(have_been_called.max(2))
-	expect(my_spy.method).not_to(have_been_called.max(2))
+    expect(my_spy.method).to(have_been_called.max(2))
+    expect(my_spy.method).not_to(have_been_called.max(2))
 
-with_args
----------
+have_been_called.with_args
+--------------------------
 
 Assert that a spy has been called with given arguments.
 
 .. code-block:: python
 
-	expect(my_spy.method).to(have_been_called.with_args('foo', key='bar'))
-	expect(my_spy.method).not_to(have_been_called.with_args('bar', key='foo'))
+    expect(my_spy.method).to(have_been_called.with_args('foo', key='bar'))
+    expect(my_spy.method).not_to(have_been_called.with_args('bar', key='foo'))
 
 Specs
 =====
 
-To run the specs you should install the testing requirements and then run `mamba`.
+To run the specs you should install the testing requirements and then run ``mamba``.
 
 .. code-block:: bash
 
