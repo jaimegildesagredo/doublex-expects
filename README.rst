@@ -58,6 +58,16 @@ Assert that a spy has been called. Negation passes through.
     expect(my_spy.method).to(have_been_called)
     expect(my_spy.method).not_to(have_been_called)
 
+have_been_called_with
+---------------------
+
+Assert that a spy has been called with given arguments.
+
+.. code-block:: python
+
+    expect(my_spy.method).to(have_been_called_with('foo', key='bar'))
+    expect(my_spy.method).not_to(have_been_called_with('bar', key='foo'))
+
 have_been_called.once
 ---------------------
 
@@ -108,16 +118,6 @@ Assert that a spy has been called maximum of `n` times.
 
     expect(my_spy.method).to(have_been_called.max(2))
     expect(my_spy.method).not_to(have_been_called.max(2))
-
-have_been_called.with_args
---------------------------
-
-Assert that a spy has been called with given arguments.
-
-.. code-block:: python
-
-    expect(my_spy.method).to(have_been_called.with_args('foo', key='bar'))
-    expect(my_spy.method).not_to(have_been_called.with_args('bar', key='foo'))
 
 Specs
 =====
