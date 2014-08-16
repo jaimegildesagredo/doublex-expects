@@ -30,6 +30,9 @@ class _have_been_called(Matcher):
     def _match(self, subject):
         return have_been_called_with()._match(subject)
 
+    def _description(self, subject):
+        return have_been_called_with()._description(subject)
+
 
 class have_been_called_with(Matcher):
     def __init__(self, *args, **kwargs):
@@ -41,28 +44,28 @@ class have_been_called_with(Matcher):
     @property
     def once(self):
         self._times = 1
-        self._times_description = ' once'
+        self._times_description = 'once'
         return self
 
     @property
     def twice(self):
         self._times = 2
-        self._times_description = ' twice'
+        self._times_description = 'twice'
         return self
 
     def exactly(self, times):
         self._times = times
-        self._times_description = ' exactly {} times'.format(times)
+        self._times_description = 'exactly {} times'.format(times)
         return self
 
     def max(self, times):
         self._times = MAX_TIMES(times)
-        self._times_description = ' max {} times'.format(times)
+        self._times_description = 'max {} times'.format(times)
         return self
 
     def min(self, times):
         self._times = MIN_TIMES(times)
-        self._times_description = ' min {} times'.format(times)
+        self._times_description = 'min {} times'.format(times)
         return self
 
     def _match(self, subject):
@@ -80,9 +83,9 @@ class have_been_called_with(Matcher):
         if self._args or self._kwargs:
             message += ' with {}'.format(plain_enumerate(self._args, self._kwargs))
 
-        message += self._times_description
+        message += ' ' + self._times_description
+        message += ' but calls that actually ocurred were:\n{}'.format(subject.double._recorded.show(indent=10))
 
         return message
-
 
 have_been_called = _have_been_called()
