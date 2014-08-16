@@ -18,13 +18,13 @@ Doublex-Expects is a matchers library for the `Expects <https://github.com/jaime
 Installation
 ============
 
-You can install the last stable release from PyPI using pip or easy_install.
+You can install the last stable release from PyPI using *pip* or *easy_install*.
 
 .. code-block:: bash
 
     $ pip install doublex-expects
 
-Also you can install the latest sources from Github.
+Also you can install the latest sources from *Github*.
 
 .. code-block:: bash
 
@@ -51,7 +51,7 @@ Matchers
 have_been_called
 ----------------
 
-Assert that a spy has been called. Negation passes through.
+Assert that a spy has been called.
 
 .. code-block:: python
 
@@ -68,56 +68,63 @@ Assert that a spy has been called with given arguments.
     expect(my_spy.method).to(have_been_called_with('foo', key='bar'))
     expect(my_spy.method).not_to(have_been_called_with('bar', key='foo'))
 
-have_been_called.once
----------------------
+Times called modifiers
+----------------------
 
-Assert that a spy has been called exactly once.
+once
+^^^^
+
+Assert that a spy has been called exactly *once*.
 
 .. code-block:: python
 
     expect(my_spy.method).to(have_been_called.once)
+    expect(my_spy.method).to(have_been_called_with('foo').once)
     expect(my_spy.method).not_to(have_been_called.once)
 
-have_been_called.twice
-----------------------
+twice
+^^^^^
 
-Assert that a spy has been called exactly twice.
+Assert that a spy has been called exactly *twice*.
 
 .. code-block:: python
 
     expect(my_spy.method).to(have_been_called.twice)
+    expect(my_spy.method).to(have_been_called_with('foo').twice)
     expect(my_spy.method).not_to(have_been_called.twice)
 
-have_been_called.exactly
-------------------------
+exactly
+^^^^^^^
 
-Assert that a spy has been called exactly n times.
+Assert that a spy has been called exactly *n* times.
 
 .. code-block:: python
 
     expect(my_spy.method).to(have_been_called.exactly(3))
+    expect(my_spy.method).to(have_been_called_with('foo').exactly(3))
     expect(my_spy.method).not_to(have_been_called.exactly(3))
 
+max
+^^^
 
-have_been_called.min
---------------------
-
-Assert that a spy has been called minimum of `n` times.
-
-.. code-block:: python
-
-    expect(my_spy.method).to(have_been_called.min(2))
-    expect(my_spy.method).not_to(have_been_called.min(2))
-
-have_been_called.max
---------------------
-
-Assert that a spy has been called maximum of `n` times.
+Assert that a spy has been called maximum of *n* times.
 
 .. code-block:: python
 
     expect(my_spy.method).to(have_been_called.max(2))
+    expect(my_spy.method).to(have_been_called_with('foo').max(2))
     expect(my_spy.method).not_to(have_been_called.max(2))
+
+min
+^^^
+
+Assert that a spy has been called minimum of *n* times.
+
+.. code-block:: python
+
+    expect(my_spy.method).to(have_been_called.min(2))
+    expect(my_spy.method).to(have_been_called_with('foo').min(2))
+    expect(my_spy.method).not_to(have_been_called.min(2))
 
 Specs
 =====

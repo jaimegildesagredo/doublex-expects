@@ -59,3 +59,23 @@ with describe('have_been_called_with'):
 
             with failure('not to have been called with {}'.format(plain_enumerate((self.arg1,), self.kwargs))):
                 expect(self.method).not_to(have_been_called_with(self.arg1, **self.kwargs))
+
+    with describe('once'):
+        with it('should pass if called with args once'):
+            self.method(self.arg1)
+
+            expect(self.method).to(have_been_called_with(self.arg1).once)
+
+
+        with it('should pass if called with args once and with other args'):
+            self.method(self.arg1)
+            self.method()
+
+            expect(self.method).to(have_been_called_with(self.arg1).once)
+
+        with it('should fail if called with args more than once'):
+            self.method(self.arg1)
+            self.method(self.arg1)
+
+            with failure('to have been called with {!r} once'.format(self.arg1)):
+                expect(self.method).to(have_been_called_with(self.arg1).once)
