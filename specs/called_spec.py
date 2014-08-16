@@ -50,7 +50,7 @@ with describe('called'):
             self.method()
             self.method()
 
-            with failure('to have been called once but was called 2 times'):
+            with failure('to have been called once'):
                 expect(self.method).to(have_been_called.once)
 
         with context('#negated'):
@@ -78,7 +78,7 @@ with describe('called'):
             self.method()
             self.method()
 
-            with failure('to have been called twice but was called 3 times'):
+            with failure('to have been called twice'):
                 expect(self.method).to(have_been_called.twice)
 
         with context('#negated'):
@@ -211,13 +211,13 @@ with describe('called_with'):
     with it('should fail if not called with positional arg'):
         self.method()
 
-        with failure('to have been called with args {!r}'.format(self.arg1)):
+        with failure('to have been called with {!r}'.format(self.arg1)):
             expect(self.method).to(have_been_called_with(self.arg1))
 
     with it('should fail if not called with keyword args'):
         self.method()
 
-        with failure('been called with args {}'.format(plain_enumerate((), self.kwargs))):
+        with failure('been called with {}'.format(plain_enumerate((), self.kwargs))):
             expect(self.method).to(have_been_called_with(**self.kwargs))
 
     with context('#negated'):
@@ -229,5 +229,5 @@ with describe('called_with'):
         with it('should fail if called with args'):
             self.method(self.arg1, **self.kwargs)
 
-            with failure('not to have been called with args {}'.format(plain_enumerate((self.arg1,), self.kwargs))):
+            with failure('not to have been called with {}'.format(plain_enumerate((self.arg1,), self.kwargs))):
                 expect(self.method).not_to(have_been_called_with(self.arg1, **self.kwargs))
