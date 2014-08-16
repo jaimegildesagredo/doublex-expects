@@ -1,2 +1,1 @@
 mamba>=0.8
--e git+git://github.com/jaimegildesagredo/expects.git@new-syntax#egg=expects

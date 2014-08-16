@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import doublex
-from expects.matchers.matcher import Matcher
+from expects.matchers import Matcher
 
 
 class HaveBeenCalled(Matcher):

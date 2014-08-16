@@ -1,1 +1,2 @@
 doublex
+expects>=0.4.0
