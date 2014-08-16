@@ -1,6 +1,25 @@
 Changes
 =======
 
+0.4.0 (Ago 16, 2014)
+--------------------
+
+Warnings
+^^^^^^^^
+
+This release *does not* maintain backwards compatibility with the previous version because was migrated to `expects 0.4.0 <http://expects.readthedocs.org/en/latest/changes.html#ago-15-2014>`_. **A migration in current assertions is required**. Matchers have been implemented maintaining compatibility with its equivalent assertions (and those that break compatibility are listed below).
+
+Highlights
+^^^^^^^^^^
+
+* Now assert the times a method was called with the given args is possible. The ``have_been_called_with`` matcher supports *time modifiers*.
+* The failure message now includes the method's calls that actually ocurred.
+
+Backwards-incompatible
+^^^^^^^^^^^^^^^^^^^^^^
+
+* The previous ``to.have.been.called.with_args`` assertion was moved to its own matcher: ``have_been_called_with``. Also the ``have_been_called`` matcher can be used without being called.
+
 0.3.0 (Jul 11, 2014)
 --------------------
 
