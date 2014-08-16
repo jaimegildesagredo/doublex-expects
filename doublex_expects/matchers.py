@@ -2,12 +2,10 @@
 
 import doublex
 from expects.matchers import Matcher
+from expects.texts import plain_enumerate
 
 
 class HaveBeenCalled(Matcher):
-    def with_args(self, *args, **kwargs):
-        return CalledWithArgs(*args, **kwargs)
-
     @property
     def twice(self):
         return CalledTwice()
@@ -105,7 +103,7 @@ class CalledTwice(Matcher):
         return 'have been called twice but was called {!r} times'.format(count)
 
 
-class CalledWithArgs(Matcher):
+class HaveBeenCalledWith(Matcher):
     def __init__(self, *args, **kwargs):
         self._args = args
         self._kwargs = kwargs
@@ -116,19 +114,4 @@ class CalledWithArgs(Matcher):
             doublex.matchers.any_time)
 
     def _description(self, subject):
-        return 'have been called with args {}'.format(self._args_description)
-
-    @property
-    def _args_description(self):
-        result = []
-
-        if len(self._args) > 0:
-            result.append(repr(self._args))
-
-        if len(self._kwargs) > 0:
-            result.append(repr(self._kwargs))
-
-        if len(result) == 2:
-            result.insert(1, 'and')
-
-        return ' '.join(result)
+        return 'have been called with args {}'.format(plain_enumerate(self._args, self._kwargs))
