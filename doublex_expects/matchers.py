@@ -12,26 +12,30 @@ MIN_TIMES = doublex.matchers.at_least
 class _have_been_called(Matcher):
     @property
     def twice(self):
-        return have_been_called_with().twice
+        return self._called.twice
 
     @property
     def once(self):
-        return have_been_called_with().once
+        return self._called.once
 
     def min(self, times):
-        return have_been_called_with().min(times)
+        return self._called.min(times)
 
     def max(self, times):
-        return have_been_called_with().max(times)
+        return self._called.max(times)
 
     def exactly(self, times):
-        return have_been_called_with().exactly(times)
+        return self._called.exactly(times)
 
     def _match(self, subject):
-        return have_been_called_with()._match(subject)
+        return self._called._match(subject)
 
     def _description(self, subject):
-        return have_been_called_with()._description(subject)
+        return self._called._description(subject)
+
+    @property
+    def _called(self):
+        return have_been_called_with()
 
 
 class have_been_called_with(Matcher):
