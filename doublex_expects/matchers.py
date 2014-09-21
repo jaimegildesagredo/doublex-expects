@@ -87,7 +87,10 @@ class have_been_called_with(Matcher):
         if self._args or self._kwargs:
             message += ' with {}'.format(plain_enumerate(self._args, self._kwargs))
 
-        message += ' ' + self._times_description
+
+        if len(self._times_description) != 0:
+            message += ' ' + self._times_description
+
         message += ' but calls that actually ocurred were:\n{}'.format(subject.double._recorded.show(indent=10))
 
         return message
