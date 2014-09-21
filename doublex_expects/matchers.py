@@ -44,7 +44,7 @@ class have_been_called_with(Matcher):
     def __init__(self, *args, **kwargs):
         self._args = args
         self._kwargs = kwargs
-        self._times = None
+        self._times = MIN_TIMES(1)
         self._times_description = ''
 
     @property
@@ -75,12 +75,7 @@ class have_been_called_with(Matcher):
         return self
 
     def _match(self, subject):
-        calls_matching = len(self._calls_matching(subject))
-
-        if self._times is None:
-            return calls_matching != 0
-
-        return self._times._match(calls_matching)
+        return self._times._match(len(self._calls_matching(subject)))
 
     def _calls_matching(self, subject):
         calls = []
