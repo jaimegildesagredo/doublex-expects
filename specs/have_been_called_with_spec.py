@@ -20,7 +20,6 @@ with describe('have_been_called_with'):
 
         expect(self.method).to(have_been_called_with(self.arg1))
 
-
     with it('should pass if called with multiple positional args'):
         self.method(self.arg1, self.arg2)
 
@@ -65,7 +64,6 @@ with describe('have_been_called_with'):
             self.method(self.arg1)
 
             expect(self.method).to(have_been_called_with(self.arg1).once)
-
 
         with it('should pass if called with args once and with other args'):
             self.method(self.arg1)
