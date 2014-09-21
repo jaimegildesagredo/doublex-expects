@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 
-import doublex
+from expects import (
+    equal as equal_matcher,
+    be_above_or_equal,
+    be_below_or_equal)
 from expects.matchers import Matcher
 from expects.texts import plain_enumerate
 
-ANY_TIME = doublex.matchers.any_time
-MAX_TIMES = doublex.matchers.at_most
-MIN_TIMES = doublex.matchers.at_least
+MAX_TIMES = be_below_or_equal
+MIN_TIMES = be_above_or_equal
 
 
 class _have_been_called(Matcher):
@@ -42,23 +44,23 @@ class have_been_called_with(Matcher):
     def __init__(self, *args, **kwargs):
         self._args = args
         self._kwargs = kwargs
-        self._times = ANY_TIME
+        self._times = None
         self._times_description = ''
 
     @property
     def once(self):
-        self._times = 1
+        self._times = equal_matcher(1)
         self._times_description = 'once'
         return self
 
     @property
     def twice(self):
-        self._times = 2
+        self._times = equal_matcher(2)
         self._times_description = 'twice'
         return self
 
     def exactly(self, times):
-        self._times = times
+        self._times = equal_matcher(times)
         self._times_description = 'exactly {} times'.format(times)
         return self
 
@@ -73,13 +75,48 @@ class have_been_called_with(Matcher):
         return self
 
     def _match(self, subject):
-        return subject._was_called(self.__args, self._times)
+        calls_matching = len(self._calls_matching(subject))
 
-    @property
-    def __args(self):
-        if self._args or self._kwargs:
-            return doublex.internal.InvocationContext(*self._args, **self._kwargs)
-        return doublex.internal.InvocationContext(doublex.ANY_ARG)
+        if self._times is None:
+            return calls_matching != 0
+
+        return self._times._match(calls_matching)
+
+    def _calls_matching(self, subject):
+        calls = []
+
+        for call in subject.calls:
+            if self._match_call(call):
+                calls.append(call)
+
+        return calls
+
+    def _match_call(self, call):
+        for i, matcher in enumerate(self._args):
+            if not hasattr(matcher, '_match'):
+                matcher = equal_matcher(matcher)
+
+            try:
+                arg = call.args[i]
+            except IndexError:
+                return False
+            else:
+                if not matcher._match(arg):
+                    return False
+
+        for k, matcher in self._kwargs.items():
+            if not hasattr(matcher, '_match'):
+                matcher = equal_matcher(matcher)
+
+            try:
+                value = call.kargs[k]
+            except KeyError:
+                return False
+            else:
+                if not matcher._match(value):
+                    return False
+
+        return True
 
     def _description(self, subject):
         message = 'have been called'

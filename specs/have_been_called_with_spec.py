@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import doublex
-from expects import expect
+from expects import expect, be_a
 from expects.testing import failure
 from expects.texts import plain_enumerate
 
@@ -12,7 +12,7 @@ with describe('have_been_called_with'):
     with before.each:
         self.method = doublex.Spy().method
         self.arg1 = 1
-        self.arg2 = 2
+        self.arg2 = 'foobar'
         self.kwargs = {'foo': 1, 'bar': 2}
 
     with it('should pass if called with positional arg'):
@@ -34,6 +34,24 @@ with describe('have_been_called_with'):
         self.method(self.arg1, self.arg2, **self.kwargs)
 
         expect(self.method).to(have_been_called_with(self.arg1, self.arg2, **self.kwargs))
+
+    with it('passes if called with positional arg matching matcher'):
+        self.method(self.arg1)
+
+        expect(self.method).to(have_been_called_with(be_a(type(self.arg1))))
+
+    with it('passes if called with multiple positional args matching matchers'):
+        self.method(self.arg1, self.arg2)
+
+        expect(self.method).to(have_been_called_with(
+            be_a(type(self.arg1)),
+            be_a(type(self.arg2))))
+
+    with it('passes if called with keyword args matching matchers'):
+        self.method(**self.kwargs)
+
+        expect(self.method).to(have_been_called_with(
+            **{k: be_a(type(v)) for k,v in self.kwargs.items()}))
 
     with it('should fail if not called with positional arg'):
         self.method()
