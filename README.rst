@@ -6,6 +6,10 @@ Doublex Expects
     :target: https://pypi.python.org/pypi/doublex-expects
     :alt: Latest version
 
+.. image:: https://img.shields.io/badge/Licence-Apache2-brightgreen.svg
+    :target: https://www.tldrlegal.com/l/apache2
+    :alt: License
+
 .. image:: https://img.shields.io/pypi/dm/doublex-expects.svg
     :target: https://pypi.python.org/pypi/doublex-expects
     :alt: Number of PyPI downloads
@@ -136,8 +140,3 @@ To run the specs you should install the testing requirements and then run ``mamb
     $ python setup.py develop
     $ pip install -r test-requirements.txt
     $ mamba
-
-License
-=======
-
-The Doublex-Expects is released under the `Apache2 license <http://www.apache.org/licenses/LICENSE-2.0.html>`_.
