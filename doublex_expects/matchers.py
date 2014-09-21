@@ -49,18 +49,18 @@ class have_been_called_with(Matcher):
 
     @property
     def once(self):
-        self._times = equal_matcher(1)
+        self._times = 1
         self._times_description = 'once'
         return self
 
     @property
     def twice(self):
-        self._times = equal_matcher(2)
+        self._times = 2
         self._times_description = 'twice'
         return self
 
     def exactly(self, times):
-        self._times = equal_matcher(times)
+        self._times = times
         self._times_description = 'exactly {} times'.format(times)
         return self
 
@@ -75,7 +75,7 @@ class have_been_called_with(Matcher):
         return self
 
     def _match(self, subject):
-        return self._times._match(len(self._calls_matching(subject)))
+        return self._match_value(self._times, len(self._calls_matching(subject)))
 
     def _calls_matching(self, subject):
         calls = []
@@ -88,30 +88,30 @@ class have_been_called_with(Matcher):
 
     def _match_call(self, call):
         for i, matcher in enumerate(self._args):
-            if not hasattr(matcher, '_match'):
-                matcher = equal_matcher(matcher)
-
             try:
                 arg = call.args[i]
             except IndexError:
                 return False
             else:
-                if not matcher._match(arg):
+                if not self._match_value(matcher, arg):
                     return False
 
         for k, matcher in self._kwargs.items():
-            if not hasattr(matcher, '_match'):
-                matcher = equal_matcher(matcher)
-
             try:
                 value = call.kargs[k]
             except KeyError:
                 return False
             else:
-                if not matcher._match(value):
+                if not self._match_value(matcher, value):
                     return False
 
         return True
+
+    def _match_value(self, matcher, value):
+        if not hasattr(matcher, '_match'):
+            matcher = equal_matcher(matcher)
+
+        return matcher._match(value)
 
     def _description(self, subject):
         message = 'have been called'
