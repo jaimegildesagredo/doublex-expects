@@ -1,1 +1,2 @@
 -e git+git://github.com/nestorsalceda/mamba.git#egg=mamba
+https://github.com/jaimegildesagredo/expects/archive/master.zip

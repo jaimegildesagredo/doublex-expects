@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from expects import (
-    equal as equal_matcher,
-    be_above_or_equal,
-    be_below_or_equal)
+from expects import be_above_or_equal, be_below_or_equal
 from expects.matchers import Matcher
 from expects.texts import plain_enumerate
 
@@ -106,12 +103,6 @@ class have_been_called_with(Matcher):
                     return False
 
         return True
-
-    def _match_value(self, matcher, value):
-        if not hasattr(matcher, '_match'):
-            matcher = equal_matcher(matcher)
-
-        return matcher._match(value)
 
     def _description(self, subject):
         message = 'have been called'
