@@ -1,2 +1,2 @@
-https://github.com/nestorsalceda/mamba/archive/master.zip
+mamba
 https://github.com/jaimegildesagredo/expects/archive/master.zip
