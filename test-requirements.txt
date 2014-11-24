@@ -1,2 +1,1 @@
 mamba
-https://github.com/jaimegildesagredo/expects/archive/master.zip
