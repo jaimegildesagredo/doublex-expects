@@ -71,6 +71,8 @@ Assert that a spy has been called with given arguments.
 
     expect(my_spy.method).to(have_been_called_with('foo', key='bar'))
     expect(my_spy.method).to(have_been_called_with(a(str), key=match('\w+')))
+    expect(my_spy.method).to(have_been_called_with(anything, key='bar'))
+    expect(my_spy.method).to(have_been_called_with('foo', any_arg))
     expect(my_spy.method).not_to(have_been_called_with('bar', key='foo'))
 
 Times called modifiers
