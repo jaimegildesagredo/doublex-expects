@@ -4,6 +4,16 @@ Changes
 0.5.0 (Jan 13, 2015)
 --------------------
 
+Highlights
+^^^^^^^^^^
+
+* Now another matchers can be passed as ``have_been_called_with`` arguments::
+
+    my_spy = Spy()
+
+    my_spy.method(1)
+
+    expect(my_spy.method).to(have_been_called_with(anI(int)))
 
 0.4.0 (Ago 16, 2014)
 --------------------
