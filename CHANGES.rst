@@ -13,7 +13,15 @@ Highlights
 
     my_spy.method(1)
 
-    expect(my_spy.method).to(have_been_called_with(anI(int)))
+    expect(my_spy.method).to(have_been_called_with(an(int)))
+
+* Added the ``anything`` matcher::
+
+    expect(my_spy.method).to(have_been_called_with(anything))
+
+* Added the ``any_args`` special matcher::
+
+    expect(my_spy.method).to(have_been_called_with(1, any_arg))
 
 0.4.0 (Ago 16, 2014)
 --------------------
