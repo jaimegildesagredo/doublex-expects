@@ -7,7 +7,7 @@ long_description = open('README.rst').read()
 
 setup(
     name='doublex-expects',
-    version='0.4.0',
+    version='0.5.0',
     description='Expects matchers for Doublex test doubles assertions',
     long_description=long_description,
     url='https://github.com/jaimegildesagredo/doublex-expects',
