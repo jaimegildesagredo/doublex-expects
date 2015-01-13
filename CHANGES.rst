@@ -19,7 +19,7 @@ Highlights
 
     expect(my_spy.method).to(have_been_called_with(anything))
 
-* Added the ``any_args`` special matcher::
+* Added the ``any_arg`` special matcher::
 
     expect(my_spy.method).to(have_been_called_with(1, any_arg))
 
