@@ -46,6 +46,8 @@ Just import the ``expect`` callable and the Doublex-Expects matchers and start w
     from doublex import Spy
 
     my_spy = Spy()
+    
+    my_spy.method()
 
     expect(my_spy.method).to(have_been_called)
 
