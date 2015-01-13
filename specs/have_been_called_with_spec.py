@@ -13,6 +13,7 @@ with describe('have_been_called_with'):
         self.method = doublex.Spy().method
         self.arg1 = 1
         self.arg2 = 'foobar'
+        self.arg3 = {}
         self.kwargs = {'foo': 1, 'bar': 2}
 
     with it('passes if called with positional arg'):
@@ -76,6 +77,29 @@ with describe('have_been_called_with'):
 
             with failure('not to have been called with {}'.format(plain_enumerate((self.arg1,), self.kwargs))):
                 expect(self.method).not_to(have_been_called_with(self.arg1, **self.kwargs))
+
+    with describe('anything'):
+        with it('passes if called with anything and positional args'):
+            self.method(self.arg1, self.arg2)
+
+            expect(self.method).to(have_been_called_with(anything, self.arg2))
+
+        with it('fails if called without positional arg'):
+            self.method()
+
+            with failure:
+                expect(self.method).to(have_been_called_with(anything))
+
+    with describe('any_arg'):
+        with it('passes if called with multiple positional args'):
+            self.method(self.arg1, self.arg2, self.arg3)
+
+            expect(self.method).to(have_been_called_with(self.arg1, any_arg))
+
+        with it('passes if called without positional args'):
+            self.method()
+
+            expect(self.method).to(have_been_called_with(any_arg))
 
     with describe('once'):
         with it('passes if called with args once'):

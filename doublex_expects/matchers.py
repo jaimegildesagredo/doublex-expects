@@ -88,6 +88,9 @@ class have_been_called_with(Matcher):
 
     def _match_args(self, call):
         for i, matcher in enumerate(self._args):
+            if matcher == any_arg:
+                return True
+
             try:
                 arg = call.args[i]
             except IndexError:
@@ -125,3 +128,18 @@ class have_been_called_with(Matcher):
         return message
 
 have_been_called = _have_been_called()
+
+
+class _anything(Matcher):
+    def _match(self, subject):
+        return True
+
+anything = _anything()
+
+
+class _any_arg(Matcher):
+    def _match(self, subject):
+        raise NotImplementedError()
+
+
+any_arg = _any_arg()
