@@ -84,6 +84,9 @@ class have_been_called_with(Matcher):
         return calls
 
     def _match_call(self, call):
+        return self._match_args(call) and self._match_kwargs(call)
+
+    def _match_args(self, call):
         for i, matcher in enumerate(self._args):
             try:
                 arg = call.args[i]
@@ -93,6 +96,9 @@ class have_been_called_with(Matcher):
                 if not self._match_value(matcher, arg):
                     return False
 
+        return True
+
+    def _match_kwargs(self, call):
         for k, matcher in self._kwargs.items():
             try:
                 value = call.kargs[k]
