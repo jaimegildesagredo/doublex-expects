@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import doublex
-from expects import expect, be_a
+from expects import expect, be_a, contain
 from expects.testing import failure
 from expects.texts import plain_enumerate
 
@@ -57,13 +57,13 @@ with describe('have_been_called_with'):
     with it('fails if not called with positional arg'):
         self.method()
 
-        with failure('to have been called with {!r}'.format(self.arg1)):
+        with failure(contain('to have been called with {!r}'.format(self.arg1))):
             expect(self.method).to(have_been_called_with(self.arg1))
 
     with it('fails if not called with keyword args'):
         self.method()
 
-        with failure('been called with {}'.format(plain_enumerate((), self.kwargs))):
+        with failure(contain('been called with {}'.format(plain_enumerate((), self.kwargs)))):
             expect(self.method).to(have_been_called_with(**self.kwargs))
 
     with context('#negated'):
@@ -75,7 +75,7 @@ with describe('have_been_called_with'):
         with it('fails if called with args'):
             self.method(self.arg1, **self.kwargs)
 
-            with failure('not to have been called with {}'.format(plain_enumerate((self.arg1,), self.kwargs))):
+            with failure(contain('not to have been called with {}'.format(plain_enumerate((self.arg1,), self.kwargs)))):
                 expect(self.method).not_to(have_been_called_with(self.arg1, **self.kwargs))
 
     with describe('anything'):
@@ -117,5 +117,5 @@ with describe('have_been_called_with'):
             self.method(self.arg1)
             self.method(self.arg1)
 
-            with failure('to have been called with {!r} once'.format(self.arg1)):
+            with failure(contain('to have been called with {!r} once'.format(self.arg1))):
                 expect(self.method).to(have_been_called_with(self.arg1).once)

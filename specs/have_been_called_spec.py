@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import doublex
-from expects import expect
+from expects import expect, contain
 from expects.testing import failure
 
 from doublex_expects import *
@@ -23,7 +23,7 @@ with describe('have_been_called'):
         expect(self.method).to(have_been_called)
 
     with it('should fail if method not called'):
-        with failure('to have been called'):
+        with failure(contain('to have been called')):
             expect(self.method).to(have_been_called)
 
     with context('#negated'):
@@ -33,7 +33,7 @@ with describe('have_been_called'):
         with it('should fail if called'):
             self.method()
 
-            with failure('not to have been called'):
+            with failure(contain('not to have been called')):
                 expect(self.method).not_to(have_been_called)
 
     with describe('once'):
@@ -46,7 +46,7 @@ with describe('have_been_called'):
             self.method()
             self.method()
 
-            with failure('to have been called once'):
+            with failure(contain('to have been called once')):
                 expect(self.method).to(have_been_called.once)
 
         with context('#negated'):
@@ -59,7 +59,7 @@ with describe('have_been_called'):
             with it('should fail if called once'):
                 self.method()
 
-                with failure('not to have been called once'):
+                with failure(contain('not to have been called once')):
                     expect(self.method).not_to(have_been_called.once)
 
     with describe('twice'):
@@ -74,7 +74,7 @@ with describe('have_been_called'):
             self.method()
             self.method()
 
-            with failure('to have been called twice'):
+            with failure(contain('to have been called twice')):
                 expect(self.method).to(have_been_called.twice)
 
         with context('#negated'):
@@ -87,7 +87,7 @@ with describe('have_been_called'):
                 self.method()
                 self.method()
 
-                with failure('not to have been called twice'):
+                with failure(contain('not to have been called twice')):
                     expect(self.method).not_to(have_been_called.twice)
 
     with describe('exactly'):
@@ -100,7 +100,7 @@ with describe('have_been_called'):
         with it('should fail if called a different amount of times'):
             self.method()
 
-            with failure('to have been called exactly 2 times'):
+            with failure(contain('to have been called exactly 2 times')):
                 expect(self.method).to(have_been_called.exactly(2))
 
         with context('#negated'):
@@ -113,7 +113,7 @@ with describe('have_been_called'):
                 self.method()
                 self.method()
 
-                with failure('not to have been called exactly 2 times'):
+                with failure(contain('not to have been called exactly 2 times')):
                     expect(self.method).not_to(have_been_called.exactly(2))
 
     with describe('max'):
@@ -130,7 +130,7 @@ with describe('have_been_called'):
             self.method()
             self.method()
 
-            with failure('to have been called max 2 times'):
+            with failure(contain('to have been called max 2 times')):
                 expect(self.method).to(have_been_called.max(2))
 
         with context('#negated'):
@@ -144,7 +144,7 @@ with describe('have_been_called'):
             with it('should fail if not called maximum x times'):
                 self.method()
 
-                with failure('not to have been called max 2 times'):
+                with failure(contain('not to have been called max 2 times')):
                     expect(self.method).not_to(have_been_called.max(2))
 
     with describe('min'):
@@ -159,7 +159,7 @@ with describe('have_been_called'):
         with it('should fail if called less times than the minimum'):
             self.method()
 
-            with failure('to have been called min 2 times'):
+            with failure(contain('to have been called min 2 times')):
                 expect(self.method).to(have_been_called.min(2))
 
         with context('#negated'):
@@ -172,5 +172,5 @@ with describe('have_been_called'):
                 self.method()
                 self.method()
 
-                with failure('not to have been called min 2 times'):
+                with failure(contain('not to have been called min 2 times')):
                     expect(self.method).not_to(have_been_called.min(2))
