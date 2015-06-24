@@ -39,6 +39,9 @@ Usage
 
 Just import the ``expect`` callable and the Doublex-Expects matchers and start writing assertions for test doubles.
 
+Spies
+-----
+
 .. code-block:: python
 
     from expects import expect
@@ -46,10 +49,28 @@ Just import the ``expect`` callable and the Doublex-Expects matchers and start w
     from doublex import Spy
 
     my_spy = Spy()
-    
+
     my_spy.method()
 
     expect(my_spy.method).to(have_been_called)
+
+Mocks
+-----
+
+.. code-block:: python
+
+    from expects import expect
+    from doublex_expects import *
+    from doublex import Mock
+
+    with Mock() as my_mock:
+        my_mock.reset()
+        my_mock.add(1)
+
+    my_mock.reset()
+    my_mock.add(1)
+
+    expect(my_mock).to(have_been_satisfied)
 
 Matchers
 ========
