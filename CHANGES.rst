@@ -1,6 +1,21 @@
 Changes
 =======
 
+0.6.0 (Not released yet)
+------------------------
+
+Highlights
+^^^^^^^^^^
+
+* Added ``have_been_satisfied`` matcher to verify mocks::
+
+    with Mock() as my_mock:
+        my_mock.method()
+
+    my_mock.method()
+
+    expect(my_mock).to(have_been_satisfied)
+
 0.5.0 (Jan 13, 2015)
 --------------------
 
