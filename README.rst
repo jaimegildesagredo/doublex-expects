@@ -75,10 +75,20 @@ Mocks
 Matchers
 ========
 
+have_been_satisfied
+-------------------
+
+Verifies that a mock calls have been satisfied.
+
+.. code-block:: python
+
+    expect(my_mock).to(have_been_satisfied)
+    expect(my_mock).not_to(have_been_satisfied)
+
 have_been_called
 ----------------
 
-Assert that a spy has been called.
+Asserts that a spy has been called.
 
 .. code-block:: python
 
@@ -88,7 +98,7 @@ Assert that a spy has been called.
 have_been_called_with
 ---------------------
 
-Assert that a spy has been called with given arguments.
+Asserts that a spy has been called with given arguments.
 
 .. code-block:: python
 
@@ -104,7 +114,7 @@ Times called modifiers
 once
 ^^^^
 
-Assert that a spy has been called exactly *once*.
+Asserts that a spy has been called exactly *once*.
 
 .. code-block:: python
 
@@ -115,7 +125,7 @@ Assert that a spy has been called exactly *once*.
 twice
 ^^^^^
 
-Assert that a spy has been called exactly *twice*.
+Asserts that a spy has been called exactly *twice*.
 
 .. code-block:: python
 
@@ -126,7 +136,7 @@ Assert that a spy has been called exactly *twice*.
 exactly
 ^^^^^^^
 
-Assert that a spy has been called exactly *n* times.
+Asserts that a spy has been called exactly *n* times.
 
 .. code-block:: python
 
@@ -137,7 +147,7 @@ Assert that a spy has been called exactly *n* times.
 max
 ^^^
 
-Assert that a spy has been called maximum of *n* times.
+Asserts that a spy has been called maximum of *n* times.
 
 .. code-block:: python
 
@@ -148,7 +158,7 @@ Assert that a spy has been called maximum of *n* times.
 min
 ^^^
 
-Assert that a spy has been called minimum of *n* times.
+Asserts that a spy has been called minimum of *n* times.
 
 .. code-block:: python
 
