@@ -19,21 +19,6 @@ Doublex Expects
 
 Doublex-Expects is a matchers library for the `Expects <https://github.com/jaimegildesagredo/expects>`_ assertion library. It provides matchers for the `Doublex <https://pypi.python.org/pypi/doublex>`_ test double library.
 
-Installation
-============
-
-You can install the last stable release from PyPI using *pip* or *easy_install*.
-
-.. code-block:: bash
-
-    $ pip install doublex-expects
-
-Also you can install the latest sources from *Github*.
-
-.. code-block:: bash
-
-     $ pip install -e git+git://github.com/jaimegildesagredo/doublex-expects.git#egg=doublex-expects
-
 Usage
 =====
 
@@ -165,6 +150,21 @@ Asserts that a spy has been called minimum of *n* times.
     expect(my_spy.method).to(have_been_called.min(2))
     expect(my_spy.method).to(have_been_called_with('foo').min(2))
     expect(my_spy.method).not_to(have_been_called.min(2))
+    
+Installation
+============
+
+You can install the last stable release from PyPI using *pip* or *easy_install*.
+
+.. code-block:: bash
+
+    $ pip install doublex-expects
+
+Also you can install the latest sources from *Github*.
+
+.. code-block:: bash
+
+     $ pip install -e git+git://github.com/jaimegildesagredo/doublex-expects.git#egg=doublex-expects
 
 Specs
 =====
