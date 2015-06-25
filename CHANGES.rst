@@ -18,7 +18,7 @@ Highlights
 
     expect(my_mock).to(have_been_satisfied)
 
-And::
+* And::
 
     with Mock() as my_mock:
         my_mock.method(1)
