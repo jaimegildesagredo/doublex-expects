@@ -60,26 +60,6 @@ Mocks
 Matchers
 ========
 
-have_been_satisfied
--------------------
-
-Verifies that a mock calls have been satisfied.
-
-.. code-block:: python
-
-    expect(my_mock).to(have_been_satisfied)
-    expect(my_mock).not_to(have_been_satisfied)
-
-have_been_satisfied_in_any_order
---------------------------------
-
-Verifies that a mock calls have been satisfied regardless of the execution order.
-
-.. code-block:: python
-
-    expect(my_mock).to(have_been_satisfied_in_any_order)
-    expect(my_mock).not_to(have_been_satisfied_in_any_order)
-
 have_been_called
 ----------------
 
@@ -160,7 +140,27 @@ Asserts that a spy has been called minimum of *n* times.
     expect(my_spy.method).to(have_been_called.min(2))
     expect(my_spy.method).to(have_been_called_with('foo').min(2))
     expect(my_spy.method).not_to(have_been_called.min(2))
-    
+
+have_been_satisfied
+-------------------
+
+Verifies that a mock calls have been satisfied.
+
+.. code-block:: python
+
+    expect(my_mock).to(have_been_satisfied)
+    expect(my_mock).not_to(have_been_satisfied)
+
+have_been_satisfied_in_any_order
+--------------------------------
+
+Verifies that a mock calls have been satisfied regardless of the execution order.
+
+.. code-block:: python
+
+    expect(my_mock).to(have_been_satisfied_in_any_order)
+    expect(my_mock).not_to(have_been_satisfied_in_any_order)
+
 Installation
 ============
 
