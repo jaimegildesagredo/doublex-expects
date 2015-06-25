@@ -7,7 +7,7 @@ Changes
 Highlights
 ^^^^^^^^^^
 
-* Added ``have_been_satisfied`` matcher to verify mocks::
+* Added ``have_been_satisfied`` and ``have_been_satisfied_in_any_order`` matchers to verify mocks::
 
     with Mock() as my_mock:
         my_mock.method()
@@ -15,6 +15,7 @@ Highlights
     my_mock.method()
 
     expect(my_mock).to(have_been_satisfied)
+    expect(my_mock).to(have_been_satisfied_in_any_order)
 
 0.5.0 (Jan 13, 2015)
 --------------------

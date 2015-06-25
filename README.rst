@@ -70,6 +70,16 @@ Verifies that a mock calls have been satisfied.
     expect(my_mock).to(have_been_satisfied)
     expect(my_mock).not_to(have_been_satisfied)
 
+have_been_satisfied_in_any_order
+--------------------------------
+
+Verifies that a mock calls have been satisfied regardless of the execution order.
+
+.. code-block:: python
+
+    expect(my_mock).to(have_been_satisfied_in_any_order)
+    expect(my_mock).not_to(have_been_satisfied_in_any_order)
+
 have_been_called
 ----------------
 

@@ -144,6 +144,20 @@ class _have_been_satisfied(Matcher):
 have_been_satisfied = _have_been_satisfied()
 
 
+class _have_been_satisfied_in_any_order(Matcher):
+    def _match(self, mock):
+        return sorted(mock._stubs) == sorted(mock._recorded)
+
+    def _description(self, mock):
+        return ('have been called in any order with:\n{expected_calls}\n'
+                'but calls that actually ocurred were:\n{actual_calls}').format(
+                    expected_calls=mock._stubs.show(indent=10),
+                    actual_calls=mock._recorded.show(indent=10))
+
+
+have_been_satisfied_in_any_order = _have_been_satisfied_in_any_order()
+
+
 class _anything(Matcher):
     def _match(self, subject):
         return True
