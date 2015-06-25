@@ -10,11 +10,23 @@ Highlights
 * Added ``have_been_satisfied`` and ``have_been_satisfied_in_any_order`` matchers to verify mocks::
 
     with Mock() as my_mock:
-        my_mock.method()
+        my_mock.method(1)
+        my_mock.method(2)
 
-    my_mock.method()
+    my_mock.method(1)
+    my_mock.method(2)
 
     expect(my_mock).to(have_been_satisfied)
+
+And::
+
+    with Mock() as my_mock:
+        my_mock.method(1)
+        my_mock.method(2)
+
+    my_mock.method(2)
+    my_mock.method(1)
+
     expect(my_mock).to(have_been_satisfied_in_any_order)
 
 0.5.0 (Jan 13, 2015)
