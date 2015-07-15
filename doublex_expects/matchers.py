@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from expects import be_above_or_equal, be_below_or_equal
-from expects.matchers import Matcher
+from expects.matchers import Matcher, default_matcher
 from expects.texts import plain_enumerate
 
 MAX_TIMES = be_below_or_equal
@@ -72,7 +72,15 @@ class have_been_called_with(Matcher):
         return self
 
     def _match(self, subject):
-        return self._match_value(self._times, len(self._calls_matching(subject)))
+        expected_times = default_matcher(self._times)
+        actual_times = len(self._calls_matching(subject))
+
+        if actual_times == 0:
+            return False, ['calls were:', subject.double._recorded.show(indent=10).strip()]
+
+        result, _ = expected_times._match(actual_times)
+
+        return result, ['was called {} times'.format(actual_times)]
 
     def _calls_matching(self, subject):
         calls = []
@@ -96,7 +104,9 @@ class have_been_called_with(Matcher):
             except IndexError:
                 return False
             else:
-                if not self._match_value(matcher, arg):
+                matcher = default_matcher(matcher)
+                result, _ = matcher._match(arg)
+                if not result:
                     return False
 
         return True
@@ -108,12 +118,14 @@ class have_been_called_with(Matcher):
             except KeyError:
                 return False
             else:
-                if not self._match_value(matcher, value):
+                matcher = default_matcher(matcher)
+                result, _ = matcher._match(value)
+                if not result:
                     return False
 
         return True
 
-    def _description(self, subject):
+    def __repr__(self):
         message = 'have been called'
 
         if self._args or self._kwargs:
@@ -123,8 +135,6 @@ class have_been_called_with(Matcher):
         if len(self._times_description) != 0:
             message += ' ' + self._times_description
 
-        message += ' but calls that actually ocurred were:\n{}'.format(subject.double._recorded.show(indent=10))
-
         return message
 
 
@@ -133,26 +143,24 @@ have_been_called = _have_been_called()
 
 class _have_been_satisfied(Matcher):
     def _match(self, mock):
-        return mock._stubs == mock._recorded
+        reasons = ['expected calls were:']
+        reasons.extend(["    {}".format(i) for i in mock._stubs])
+        reasons.append('and actual calls were:')
+        reasons.extend(["    {}".format(i) for i in mock._recorded])
 
-    def _description(self, mock):
-        return ('have been called with:\n{expected_calls}\n'
-                'but calls that actually ocurred were:\n{actual_calls}').format(
-                    expected_calls=mock._stubs.show(indent=10),
-                    actual_calls=mock._recorded.show(indent=10))
+        return mock._stubs == mock._recorded, reasons
 
 have_been_satisfied = _have_been_satisfied()
 
 
 class _have_been_satisfied_in_any_order(Matcher):
     def _match(self, mock):
-        return sorted(mock._stubs) == sorted(mock._recorded)
+        reasons = ['expected calls were:']
+        reasons.extend(["    {}".format(i) for i in mock._stubs])
+        reasons.append('and actual calls were:')
+        reasons.extend(["    {}".format(i) for i in mock._recorded])
 
-    def _description(self, mock):
-        return ('have been called in any order with:\n{expected_calls}\n'
-                'but calls that actually ocurred were:\n{actual_calls}').format(
-                    expected_calls=mock._stubs.show(indent=10),
-                    actual_calls=mock._recorded.show(indent=10))
+        return sorted(mock._stubs) == sorted(mock._recorded), reasons
 
 
 have_been_satisfied_in_any_order = _have_been_satisfied_in_any_order()
@@ -160,7 +168,7 @@ have_been_satisfied_in_any_order = _have_been_satisfied_in_any_order()
 
 class _anything(Matcher):
     def _match(self, subject):
-        return True
+        return True, []
 
 anything = _anything()
 
