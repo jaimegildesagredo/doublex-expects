@@ -1,2 +1,2 @@
 doublex
-expects>=0.6.0
+expects>=0.8.0rc1
