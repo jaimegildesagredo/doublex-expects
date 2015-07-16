@@ -33,7 +33,7 @@ with describe('have_been_called'):
         with it('fails if called'):
             self.method()
 
-            with failure('but: was called 1 times'):
+            with failure:
                 expect(self.method).not_to(have_been_called)
 
     with describe('once'):
@@ -46,7 +46,7 @@ with describe('have_been_called'):
             self.method()
             self.method()
 
-            with failure("but: was called 2 times"):
+            with failure:
                 expect(self.method).to(have_been_called.once)
 
         with context('when negated'):
@@ -59,7 +59,7 @@ with describe('have_been_called'):
             with it('fails if called once'):
                 self.method()
 
-                with failure("but: was called 1 times"):
+                with failure:
                     expect(self.method).not_to(have_been_called.once)
 
     with describe('twice'):
@@ -74,7 +74,7 @@ with describe('have_been_called'):
             self.method()
             self.method()
 
-            with failure("but: was called 3 times"):
+            with failure:
                 expect(self.method).to(have_been_called.twice)
 
         with context('when negated'):
@@ -87,7 +87,7 @@ with describe('have_been_called'):
                 self.method()
                 self.method()
 
-                with failure("but: was called 2 times"):
+                with failure:
                     expect(self.method).not_to(have_been_called.twice)
 
     with describe('exactly'):
@@ -97,10 +97,13 @@ with describe('have_been_called'):
 
             expect(self.method).to(have_been_called.exactly(2))
 
+        with it('passes if method called exactly 0 times'):
+            expect(self.method).to(have_been_called.exactly(0))
+
         with it('fails if called a different amount of times'):
             self.method()
 
-            with failure("but: was called 1 times"):
+            with failure:
                 expect(self.method).to(have_been_called.exactly(2))
 
         with context('when negated'):
@@ -113,7 +116,7 @@ with describe('have_been_called'):
                 self.method()
                 self.method()
 
-                with failure("but: was called 2 times"):
+                with failure:
                     expect(self.method).not_to(have_been_called.exactly(2))
 
     with describe('max'):
@@ -130,7 +133,7 @@ with describe('have_been_called'):
             self.method()
             self.method()
 
-            with failure("but: was called 3 times"):
+            with failure:
                 expect(self.method).to(have_been_called.max(2))
 
         with context('when negated'):
@@ -144,7 +147,7 @@ with describe('have_been_called'):
             with it('fails if not called maximum x times'):
                 self.method()
 
-                with failure("but: was called 1 times"):
+                with failure:
                     expect(self.method).not_to(have_been_called.max(2))
 
     with describe('min'):
@@ -159,7 +162,7 @@ with describe('have_been_called'):
         with it('fails if called less times than the minimum'):
             self.method()
 
-            with failure("but: was called 1 times"):
+            with failure:
                 expect(self.method).to(have_been_called.min(2))
 
         with context('when negated'):
@@ -172,5 +175,5 @@ with describe('have_been_called'):
                 self.method()
                 self.method()
 
-                with failure("but: was called 2 times"):
+                with failure:
                     expect(self.method).not_to(have_been_called.min(2))

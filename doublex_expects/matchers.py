@@ -72,15 +72,8 @@ class have_been_called_with(Matcher):
         return self
 
     def _match(self, subject):
-        expected_times = default_matcher(self._times)
-        actual_times = len(self._calls_matching(subject))
-
-        if actual_times == 0:
-            return False, ['calls were:', subject.double._recorded.show(indent=10).strip()]
-
-        result, _ = expected_times._match(actual_times)
-
-        return result, ['was called {} times'.format(actual_times)]
+        result, _ = default_matcher(self._times)._match(len(self._calls_matching(subject)))
+        return result, ['calls were:', subject.double._recorded.show(indent=10).strip()]
 
     def _calls_matching(self, subject):
         calls = []
