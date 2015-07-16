@@ -73,7 +73,12 @@ class have_been_called_with(Matcher):
 
     def _match(self, subject):
         result, _ = default_matcher(self._times)._match(len(self._calls_matching(subject)))
-        return result, ['calls were:', subject.double._recorded.show(indent=10).strip()]
+        reasons = ['calls were:']
+        if not subject.double._recorded:
+            reasons.append('No one')
+        else:
+            reasons.extend([str(i) for i in subject.double._recorded])
+        return result, reasons
 
     def _calls_matching(self, subject):
         calls = []
