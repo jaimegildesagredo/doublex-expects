@@ -1,8 +1,8 @@
 Changes
 =======
 
-0.6.0 (Jun 26, 2015)
---------------------
+0.6.0 (2015-06-26)
+------------------
 
 Highlights
 ^^^^^^^^^^
@@ -29,8 +29,8 @@ Highlights
 
     expect(my_mock).to(have_been_satisfied_in_any_order)
 
-0.5.0 (Jan 13, 2015)
---------------------
+0.5.0 (2015-01-13)
+------------------
 
 Highlights
 ^^^^^^^^^^
@@ -51,8 +51,8 @@ Highlights
 
     expect(my_spy.method).to(have_been_called_with(1, any_arg))
 
-0.4.0 (Ago 16, 2014)
---------------------
+0.4.0 (2014-08-16)
+------------------
 
 Warnings
 ^^^^^^^^
@@ -70,8 +70,8 @@ Backwards-incompatible
 
 * The previous ``to.have.been.called.with_args`` assertion was moved to its own matcher: ``have_been_called_with``. Also the ``have_been_called`` matcher can be used without being called.
 
-0.3.0 (Jul 11, 2014)
---------------------
+0.3.0 (2014-07-11)
+------------------
 
 Highlights
 ^^^^^^^^^^
@@ -87,16 +87,16 @@ Backwards-incompatible
 
 * The `called` assertion now should be "called" as a method: `expect(spy).to.have.been.called()`.
 
-0.2.0 (Jun 10, 2014)
---------------------
+0.2.0 (2014-06-10)
+------------------
 
 Highlights
 ^^^^^^^^^^
 
 * Use the new `expects type plugins <https://github.com/jaimegildesagredo/expects/commit/76c256a65e8112aa0740b1f15738fbd3653a6b4d>`_ for expectations.
 
-0.1.0 (Jun 5, 2014)
--------------------
+0.1.0 (2014-06-05)
+------------------
 
 Highlights
 ^^^^^^^^^^
