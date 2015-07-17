@@ -15,3 +15,14 @@ install:
 
 script:
  - mamba
+
+deploy:
+  provider: pypi
+  skip_cleanup: true
+  user: jaimegildesagredo
+  password:
+    secure: KFU5K0be1VK6Chz5yXOIh+J5Fa+4QOw7T3qU599ex+EWHOuPFVShchxz8Z4+ChOwWfwS/erfY4J6xpj3rJZXhxu7BhcaQbFF2SBaI653kOol6N5rnpX63We4c1Sd7aNsqo5zURqlLe1TEM3n2zuob06+84K5r1dUcWcmzsKxBD4=
+  on:
+    tags: true
+    repo: jaimegildesagredo/doublex-expects
+    python: 3.4
