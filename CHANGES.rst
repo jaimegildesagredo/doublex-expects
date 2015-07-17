@@ -4,6 +4,11 @@ Changes
 0.7.0rc1 (Not released yet)
 ---------------------------
 
+Highlights
+^^^^^^^^^^
+
+* Work with expects >= 0.8.0rc1
+
 0.6.0 (2015-06-26)
 ------------------
 
