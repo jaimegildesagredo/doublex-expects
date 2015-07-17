@@ -3,25 +3,25 @@ language: python
 sudo: false
 
 python:
-    - 2.7
-    - 3.3
-    - 3.4
-    - pypy
+  - 2.7
+  - 3.3
+  - 3.4
+  - pypy
 
 install:
- - python setup.py sdist
- - pip install dist/doublex-expects-`python setup.py --version`.tar.gz
- - pip install -r test-requirements.txt
+  - python setup.py sdist
+  - pip install dist/doublex-expects-`python setup.py --version`.tar.gz
+  - pip install -r test-requirements.txt
 
 script:
- - mamba
+  - mamba
 
 deploy:
   provider: pypi
   skip_cleanup: true
   user: jaimegildesagredo
   password:
-    secure: KFU5K0be1VK6Chz5yXOIh+J5Fa+4QOw7T3qU599ex+EWHOuPFVShchxz8Z4+ChOwWfwS/erfY4J6xpj3rJZXhxu7BhcaQbFF2SBaI653kOol6N5rnpX63We4c1Sd7aNsqo5zURqlLe1TEM3n2zuob06+84K5r1dUcWcmzsKxBD4=
+    secure: YuA1aIn3dcqbemRGQWQXbcZ4Qaj+Bf36nexggbx6I+VpLF9F6vLcQRciLO14IMMKOTWkfnRgF3G2TXSapIZmCKq/kWa2QjS9i3LGF3zicstrXaZXVij5DBd3l0W0PyKYgSyLo7zKPC56lHVV7dERl8z9A8w8W5axzFZGGYbSvMU=
   on:
     tags: true
     repo: jaimegildesagredo/doublex-expects
