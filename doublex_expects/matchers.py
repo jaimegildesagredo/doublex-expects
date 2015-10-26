@@ -94,7 +94,7 @@ class have_been_called_with(Matcher):
 
     def _match_args(self, call):
         for i, matcher in enumerate(self._args):
-            if matcher == any_arg:
+            if matcher is any_arg:
                 return True
 
             try:
