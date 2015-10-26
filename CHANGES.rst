@@ -1,6 +1,14 @@
 Changes
 =======
 
+0.7.0rc2 (2015-10-26)
+---------------------
+
+Bug fixes
+^^^^^^^^^
+
+* Resolve error when passing an object with custom ``__eq__`` to ``have_been_called_with``. See `GH-10 <https://github.com/jaimegildesagredo/doublex-expects/issues/10>`_.
+
 0.7.0rc1 (2015-07-17)
 ---------------------
 
