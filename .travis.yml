@@ -6,6 +6,7 @@ python:
   - 2.7
   - 3.3
   - 3.4
+  - 3.5
   - pypy
 
 install:
@@ -25,4 +26,4 @@ deploy:
   on:
     tags: true
     repo: jaimegildesagredo/doublex-expects
-    python: 3.4
+    python: 3.5
