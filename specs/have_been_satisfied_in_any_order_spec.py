@@ -20,11 +20,11 @@ with describe('have_been_satisfied_in_any_order'):
 
     with it('passes if mock methods have been called in another order'):
         with doublex.Mock() as mock:
-            mock.foo(1)
-            mock.bar()
+            mock.the_first_function_foo(1)
+            mock.the_second_function_bar()
 
-        mock.bar()
-        mock.foo(1)
+        mock.the_second_function_bar()
+        mock.the_first_function_foo(1)
 
         expect(mock).to(have_been_satisfied_in_any_order)
 

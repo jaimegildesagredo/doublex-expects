@@ -158,7 +158,7 @@ class _have_been_satisfied_in_any_order(Matcher):
         reasons.append('and actual calls were:')
         reasons.extend(["    {}".format(i) for i in mock._recorded])
 
-        return sorted(mock._stubs) == sorted(mock._recorded), reasons
+        return sorted(mock._stubs, key=str) == sorted(mock._recorded, key=str), reasons
 
 
 have_been_satisfied_in_any_order = _have_been_satisfied_in_any_order()
