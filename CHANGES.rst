@@ -1,6 +1,14 @@
 Changes
 =======
 
+0.7.1 (2019-08-19)
+------------------
+
+Bug fixes
+^^^^^^^^^^
+
+* ``have_been_satisfied_in_any_order`` matcher failed in some cases. See issue `GH-19 <https://github.com/jaimegildesagredo/doublex-expects/issues/19>`_ and pull request `GH-20 <https://github.com/jaimegildesagredo/doublex-expects/pull/20>` for more info._
+
 0.7.0 (2018-09-26)
 ------------------
 
