@@ -4,10 +4,10 @@ sudo: false
 
 python:
   - 2.7
-  - 3.3
-  - 3.4
   - 3.5
+  - 3.6
   - pypy
+  - pypy3.5
 
 install:
   - python setup.py sdist
@@ -26,4 +26,4 @@ deploy:
   on:
     tags: true
     repo: jaimegildesagredo/doublex-expects
-    python: 3.5
+    python: 3.6
